@@ -1,11 +1,11 @@
 trigger:
-  - azure-pipelines-single
+  - azure-pipelines-neo
 
 pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-  - group: cpi-dev
+  - group: cpi-neo
 
 # https://docs.microsoft.com/en-gb/azure/devops/pipelines/process/container-phases
 resources:
@@ -18,14 +18,14 @@ jobs:
     container: flashpipe
     steps:
       # Upload/Update design time
-      - bash: /usr/bin/update_designtime_artifact.sh /tmp $DEV_HOST_TMN $DEV_CPI_USER $DEV_CPI_PW GroovyXMLTransformation "Groovy XML Transformation" FlashPipeDemo "FlashPipe Demo" "$(Build.SourcesDirectory)/FlashPipe Demo/Groovy XML Transformation" --debug
+      - bash: /usr/bin/update_designtime_artifact.sh /tmp $NEO_HOST_TMN $DEV_CPI_USER $DEV_CPI_PW GroovyXMLTransformation "Groovy XML Transformation" FlashPipeDemo "FlashPipe Demo" "$(Build.SourcesDirectory)/FlashPipe Demo/Groovy XML Transformation" --debug
         displayName: 'Update/Upload Groovy XML Transformation to design time'
         env:
-          DEV_CPI_USER: $(dev_user)
-          DEV_CPI_PW: $(dev_password)
+          DEV_CPI_USER: $(neo_user)
+          DEV_CPI_PW: $(neo_password)
       # Deploy runtime
-      - bash: /usr/bin/deploy_runtime_artifact.sh GroovyXMLTransformation $DEV_HOST_TMN $DEV_CPI_USER $DEV_CPI_PW
+      - bash: /usr/bin/deploy_runtime_artifact.sh GroovyXMLTransformation $NEO_HOST_TMN $DEV_CPI_USER $DEV_CPI_PW
         displayName: 'Deploy Groovy XML Transformation to runtime'
         env:
-          DEV_CPI_USER: $(dev_user)
-          DEV_CPI_PW: $(dev_password)
+          DEV_CPI_USER: $(neo_user)
+          DEV_CPI_PW: $(neo_password)
