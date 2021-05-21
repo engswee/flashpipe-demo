@@ -18,7 +18,7 @@ jobs:
     container: flashpipe
     steps:
       # Upload/Update design time
-      - bash: /usr/bin/update_designtime_artifact.sh /tmp $DEV_HOST_TMN $DEV_CPI_USER $DEV_CPI_PW GroovyXMLTransformation "Groovy XML Transformation" FlashPipeDemo "FlashPipe Demo" "$(Build.SourcesDirectory)/FlashPipe Demo/Groovy XML Transformation" --debug
+      - bash: /usr/bin/update_designtime_artifact.sh --debug /tmp $DEV_HOST_TMN $DEV_CPI_USER $DEV_CPI_PW GroovyXMLTransformation "Groovy XML Transformation" FlashPipeDemo "FlashPipe Demo" "$(Build.SourcesDirectory)/FlashPipe Demo/Groovy XML Transformation"
         displayName: 'Update/Upload Groovy XML Transformation to design time'
         env:
           DEV_CPI_USER: $(dev_user)
