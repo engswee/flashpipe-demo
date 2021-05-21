@@ -28,12 +28,12 @@ jobs:
           options: '-o -s /usr/share/maven/ref/settings-docker.xml -DfailIfNoTests=false'
           publishJUnitResults: true
       # Upload/Update design time
-      - bash: /usr/bin/update_designtime_artifact.sh /tmp $DEV_HOST_TMN $DEV_CPI_USER $DEV_CPI_PW GroovyXMLTransformation "Groovy XML Transformation" FlashPipeDemo "FlashPipe Demo" "$(Build.SourcesDirectory)/FlashPipe Demo/Groovy XML Transformation" --debug
+      - bash: /usr/bin/update_designtime_artifact.sh --debug /tmp $DEV_HOST_TMN $DEV_CPI_USER $DEV_CPI_PW GroovyXMLTransformation "Groovy XML Transformation" FlashPipeDemo "FlashPipe Demo" "$(Build.SourcesDirectory)/FlashPipe Demo/Groovy XML Transformation"
         displayName: 'Update/Upload Groovy XML Transformation to design time'
         env:
           DEV_CPI_USER: $(dev_user)
           DEV_CPI_PW: $(dev_password)
-      - bash: /usr/bin/update_designtime_artifact.sh /tmp $DEV_HOST_TMN $DEV_CPI_USER $DEV_CPI_PW INVOIC02_to_Invoice_XML "INVOIC02 to Invoice XML" FlashPipeDemo "FlashPipe Demo" "$(Build.SourcesDirectory)/FlashPipe Demo/INVOIC02_to_Invoice_XML" --debug
+      - bash: /usr/bin/update_designtime_artifact.sh --debug /tmp $DEV_HOST_TMN $DEV_CPI_USER $DEV_CPI_PW INVOIC02_to_Invoice_XML "INVOIC02 to Invoice XML" FlashPipeDemo "FlashPipe Demo" "$(Build.SourcesDirectory)/FlashPipe Demo/INVOIC02_to_Invoice_XML"
         displayName: 'Update/Upload INVOIC02 to Invoice XML to design time'
         env:
           DEV_CPI_USER: $(dev_user)
@@ -66,12 +66,12 @@ jobs:
                 artifact: GitRepo
                 path: $(Build.SourcesDirectory)/
             # Upload/Update design time
-            - bash: /usr/bin/update_designtime_artifact.sh /tmp $DEV_HOST_TMN $DEV_CPI_USER $DEV_CPI_PW GroovyXMLTransformation_QA "Groovy XML Transformation QA" FlashPipeDemoQA "FlashPipe Demo QA" "$(Build.SourcesDirectory)/FlashPipe Demo/Groovy XML Transformation" --manifest_file="$(Build.SourcesDirectory)/FlashPipe Demo/Groovy XML Transformation/QA/MANIFEST.MF" --param_file="$(Build.SourcesDirectory)/FlashPipe Demo/Groovy XML Transformation/QA/parameters.prop"
+            - bash: /usr/bin/update_designtime_artifact.sh --manifest_file="$(Build.SourcesDirectory)/FlashPipe Demo/Groovy XML Transformation/QA/MANIFEST.MF" --param_file="$(Build.SourcesDirectory)/FlashPipe Demo/Groovy XML Transformation/QA/parameters.prop" /tmp $DEV_HOST_TMN $DEV_CPI_USER $DEV_CPI_PW GroovyXMLTransformation_QA "Groovy XML Transformation QA" FlashPipeDemoQA "FlashPipe Demo QA" "$(Build.SourcesDirectory)/FlashPipe Demo/Groovy XML Transformation"
               displayName: 'Update/Upload Groovy XML Transformation to design time'
               env:
                 DEV_CPI_USER: $(dev_user)
                 DEV_CPI_PW: $(dev_password)
-            - bash: /usr/bin/update_designtime_artifact.sh /tmp $DEV_HOST_TMN $DEV_CPI_USER $DEV_CPI_PW INVOIC02_to_Invoice_XML_QA "INVOIC02 to Invoice XML QA" FlashPipeDemoQA "FlashPipe Demo QA" "$(Build.SourcesDirectory)/FlashPipe Demo/INVOIC02_to_Invoice_XML" --manifest_file="$(Build.SourcesDirectory)/FlashPipe Demo/INVOIC02_to_Invoice_XML/QA/MANIFEST.MF" --param_file="$(Build.SourcesDirectory)/FlashPipe Demo/INVOIC02_to_Invoice_XML/QA/parameters.prop"
+            - bash: /usr/bin/update_designtime_artifact.sh --manifest_file="$(Build.SourcesDirectory)/FlashPipe Demo/INVOIC02_to_Invoice_XML/QA/MANIFEST.MF" --param_file="$(Build.SourcesDirectory)/FlashPipe Demo/INVOIC02_to_Invoice_XML/QA/parameters.prop" /tmp $DEV_HOST_TMN $DEV_CPI_USER $DEV_CPI_PW INVOIC02_to_Invoice_XML_QA "INVOIC02 to Invoice XML QA" FlashPipeDemoQA "FlashPipe Demo QA" "$(Build.SourcesDirectory)/FlashPipe Demo/INVOIC02_to_Invoice_XML"
               displayName: 'Update/Upload INVOIC02 to Invoice XML to design time'
               env:
                 DEV_CPI_USER: $(dev_user)
@@ -101,12 +101,12 @@ jobs:
                 artifact: GitRepo
                 path: $(Build.SourcesDirectory)/
             # Upload/Update design time
-            - bash: /usr/bin/update_designtime_artifact.sh /tmp $PROD_HOST_TMN $PROD_CPI_USER $PROD_CPI_PW GroovyXMLTransformation "Groovy XML Transformation" FlashPipeDemo "FlashPipe Demo" "$(Build.SourcesDirectory)/FlashPipe Demo/Groovy XML Transformation" --param_file="$(Build.SourcesDirectory)/FlashPipe Demo/Groovy XML Transformation/PROD/parameters.prop"
+            - bash: /usr/bin/update_designtime_artifact.sh --param_file="$(Build.SourcesDirectory)/FlashPipe Demo/Groovy XML Transformation/PROD/parameters.prop" /tmp $PROD_HOST_TMN $PROD_CPI_USER $PROD_CPI_PW GroovyXMLTransformation "Groovy XML Transformation" FlashPipeDemo "FlashPipe Demo" "$(Build.SourcesDirectory)/FlashPipe Demo/Groovy XML Transformation"
               displayName: 'Update/Upload Groovy XML Transformation to design time'
               env:
                 PROD_CPI_USER: $(prod_user)
                 PROD_CPI_PW: $(prod_password)
-            - bash: /usr/bin/update_designtime_artifact.sh /tmp $PROD_HOST_TMN $PROD_CPI_USER $PROD_CPI_PW INVOIC02_to_Invoice_XML "INVOIC02 to Invoice XML" FlashPipeDemo "FlashPipe Demo" "$(Build.SourcesDirectory)/FlashPipe Demo/INVOIC02_to_Invoice_XML" --param_file="$(Build.SourcesDirectory)/FlashPipe Demo/INVOIC02_to_Invoice_XML/PROD/parameters.prop"
+            - bash: /usr/bin/update_designtime_artifact.sh --param_file="$(Build.SourcesDirectory)/FlashPipe Demo/INVOIC02_to_Invoice_XML/PROD/parameters.prop" /tmp $PROD_HOST_TMN $PROD_CPI_USER $PROD_CPI_PW INVOIC02_to_Invoice_XML "INVOIC02 to Invoice XML" FlashPipeDemo "FlashPipe Demo" "$(Build.SourcesDirectory)/FlashPipe Demo/INVOIC02_to_Invoice_XML"
               displayName: 'Update/Upload INVOIC02 to Invoice XML to design time'
               env:
                 PROD_CPI_USER: $(prod_user)
