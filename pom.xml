@@ -80,10 +80,6 @@
                         <include>**/*Spec.java</include>
                         <include>**/*Test.java</include>
                     </includes>
-                    <systemPropertyVariables>
-                        <com.athaydes.spockframework.report.outputDir>target/spock-reports
-                        </com.athaydes.spockframework.report.outputDir>
-                    </systemPropertyVariables>
                 </configuration>
             </plugin>
             <plugin>
