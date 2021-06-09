@@ -10,12 +10,12 @@ variables:
 # https://docs.microsoft.com/en-gb/azure/devops/pipelines/process/container-phases
 resources:
   containers:
-    - container: flashpipe
-      image: engswee/flashpipe:2.0.0
+    - container: flashpipe-lite
+      image: engswee/flashpipe:2.0.0-lite
 
 jobs:
   - job: build
-    container: flashpipe
+    container: flashpipe-lite
     steps:
       # Upload/Update design time
       - bash: /usr/bin/update_designtime_artifact.sh
