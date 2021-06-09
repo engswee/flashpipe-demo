@@ -13,6 +13,8 @@ resources:
   containers:
     - container: flashpipe
       image: engswee/flashpipe:2.0.0
+    - container: flashpipe-lite
+      image: engswee/flashpipe:2.0.0-lite
 
 jobs:
   - job: build
@@ -71,7 +73,7 @@ jobs:
       - publish: $(System.DefaultWorkingDirectory)
         artifact: GitRepo
   - deployment: deploy_qa
-    container: flashpipe
+    container: flashpipe-lite
     dependsOn: build
     environment: cpi_dev
     strategy:
@@ -130,7 +132,7 @@ jobs:
                 OAUTH_CLIENTSECRET: $(dev-client-secret)
                 IFLOW_ID: INVOIC02_to_Invoice_XML_QA
   - deployment: deploy_prod
-    container: flashpipe
+    container: flashpipe-lite
     dependsOn: deploy_qa
     environment: cpi_prod
     strategy:
