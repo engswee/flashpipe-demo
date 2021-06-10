@@ -149,8 +149,9 @@ jobs:
               displayName: 'Update/Upload Groovy XML Transformation to design time'
               env:
                 HOST_TMN: $(prod-host-tmn)
-                BASIC_USERID: $(prod-user)
-                BASIC_PASSWORD: $(prod-password)
+                HOST_OAUTH: $(prod-oauth-host)
+                OAUTH_CLIENTID: $(prod-client-id)
+                OAUTH_CLIENTSECRET: $(prod-client-secret)
                 IFLOW_ID: GroovyXMLTransformation
                 IFLOW_NAME: "Groovy XML Transformation"
                 PACKAGE_ID: FlashPipeDemo
@@ -161,8 +162,9 @@ jobs:
               displayName: 'Update/Upload INVOIC02 to Invoice XML to design time'
               env:
                 HOST_TMN: $(prod-host-tmn)
-                BASIC_USERID: $(prod-user)
-                BASIC_PASSWORD: $(prod-password)
+                HOST_OAUTH: $(prod-oauth-host)
+                OAUTH_CLIENTID: $(prod-client-id)
+                OAUTH_CLIENTSECRET: $(prod-client-secret)
                 IFLOW_ID: INVOIC02_to_Invoice_XML
                 IFLOW_NAME: "INVOIC02 to Invoice XML"
                 PACKAGE_ID: FlashPipeDemo
@@ -174,13 +176,15 @@ jobs:
               displayName: 'Deploy Groovy XML Transformation to runtime'
               env:
                 HOST_TMN: $(prod-host-tmn)
-                BASIC_USERID: $(prod-user)
-                BASIC_PASSWORD: $(prod-password)
+                HOST_OAUTH: $(prod-oauth-host)
+                OAUTH_CLIENTID: $(prod-client-id)
+                OAUTH_CLIENTSECRET: $(prod-client-secret)
                 IFLOW_ID: GroovyXMLTransformation
             - bash: /usr/bin/deploy_runtime_artifact.sh
               displayName: 'Deploy INVOIC02 to Invoice XML to runtime'
               env:
                 HOST_TMN: $(prod-host-tmn)
-                BASIC_USERID: $(prod-user)
-                BASIC_PASSWORD: $(prod-password)
+                HOST_OAUTH: $(prod-oauth-host)
+                OAUTH_CLIENTID: $(prod-client-id)
+                OAUTH_CLIENTSECRET: $(prod-client-secret)
                 IFLOW_ID: INVOIC02_to_Invoice_XML
