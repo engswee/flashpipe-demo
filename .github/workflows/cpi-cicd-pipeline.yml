@@ -1,5 +1,5 @@
 # https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions
-name: cpi-pipeline
+name: cpi-cicd-pipeline
 on:
   push:
     branches:
@@ -10,17 +10,20 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: engswee/flashpipe:2.0.1
-    environment: dev
     env:
       HOST_TMN: 33cc92b4trial.it-cpitrial02.cfapps.eu10-001.hana.ondemand.com
       HOST_OAUTH: 33cc92b4trial.authentication.eu10.hana.ondemand.com
       OAUTH_CLIENTID: ${{ secrets.DEV_CLIENT_ID }}
       OAUTH_CLIENTSECRET: ${{ secrets.DEV_CLIENT_SECRET }}
     steps:
-      - uses: actions/checkout@v2
-      - run: mvn clean test -o -s /usr/share/maven/ref/settings-docker.xml
+      - name: 'Checkout Git repository'
+        uses: actions/checkout@v2
+      - name: 'Local unit test with Maven'
+        run: mvn clean test -o -s /usr/share/maven/ref/settings-docker.xml
       # Set environment variable for source directory of IFlow
-      - run: echo "GIT_DIR=$GITHUB_WORKSPACE/FlashPipe Demo/Groovy XML Transformation" >> $GITHUB_ENV
+      - name: 'Set environment variables for update_designtime_artifact.sh'
+        run: |
+          echo "GIT_DIR=$GITHUB_WORKSPACE/FlashPipe Demo/Groovy XML Transformation" >> $GITHUB_ENV
       # Upload/Update design time
       - name: 'Update/Upload Groovy XML Transformation to design time'
         run: /usr/bin/update_designtime_artifact.sh
