@@ -12,9 +12,9 @@ variables:
 resources:
   containers:
     - container: flashpipe
-      image: engswee/flashpipe:2.1.0
+      image: engswee/flashpipe:2.1.1
     - container: flashpipe-lite
-      image: engswee/flashpipe:2.1.0-lite
+      image: engswee/flashpipe:2.1.1-lite
 
 jobs:
   - job: build
@@ -39,7 +39,7 @@ jobs:
           IFLOW_NAME: "Groovy XML Transformation"
           PACKAGE_ID: FlashPipeDemo
           PACKAGE_NAME: "FlashPipe Demo"
-          GIT_DIR: "$(Build.SourcesDirectory)/FlashPipe Demo/Groovy XML Transformation"
+          GIT_SRC_DIR: "$(Build.SourcesDirectory)/FlashPipe Demo/Groovy XML Transformation"
       - bash: /usr/bin/update_designtime_artifact.sh
         displayName: 'Update/Upload INVOIC02 to Invoice XML to design time'
         env:
@@ -51,7 +51,7 @@ jobs:
           IFLOW_NAME: "INVOIC02 to Invoice XML"
           PACKAGE_ID: FlashPipeDemo
           PACKAGE_NAME: "FlashPipe Demo"
-          GIT_DIR: "$(Build.SourcesDirectory)/FlashPipe Demo/INVOIC02_to_Invoice_XML"
+          GIT_SRC_DIR: "$(Build.SourcesDirectory)/FlashPipe Demo/INVOIC02_to_Invoice_XML"
       # Deploy runtime
       - bash: /usr/bin/deploy_runtime_artifact.sh
         displayName: 'Deploy Groovy XML Transformation to runtime'
@@ -97,7 +97,7 @@ jobs:
                 IFLOW_NAME: "Groovy XML Transformation QA"
                 PACKAGE_ID: FlashPipeDemoQA
                 PACKAGE_NAME: "FlashPipe Demo QA"
-                GIT_DIR: "$(Build.SourcesDirectory)/FlashPipe Demo/Groovy XML Transformation"
+                GIT_SRC_DIR: "$(Build.SourcesDirectory)/FlashPipe Demo/Groovy XML Transformation"
                 MANIFEST_FILE: "$(Build.SourcesDirectory)/FlashPipe Demo/Groovy XML Transformation/QA/MANIFEST.MF"
                 PARAM_FILE: "$(Build.SourcesDirectory)/FlashPipe Demo/Groovy XML Transformation/QA/parameters.prop"
             - bash: /usr/bin/update_designtime_artifact.sh
@@ -111,7 +111,7 @@ jobs:
                 IFLOW_NAME: "INVOIC02 to Invoice XML QA"
                 PACKAGE_ID: FlashPipeDemoQA
                 PACKAGE_NAME: "FlashPipe Demo QA"
-                GIT_DIR: "$(Build.SourcesDirectory)/FlashPipe Demo/INVOIC02_to_Invoice_XML"
+                GIT_SRC_DIR: "$(Build.SourcesDirectory)/FlashPipe Demo/INVOIC02_to_Invoice_XML"
                 MANIFEST_FILE: "$(Build.SourcesDirectory)/FlashPipe Demo/INVOIC02_to_Invoice_XML/QA/MANIFEST.MF"
                 PARAM_FILE: "$(Build.SourcesDirectory)/FlashPipe Demo/INVOIC02_to_Invoice_XML/QA/parameters.prop"
             # Deploy runtime
@@ -156,7 +156,7 @@ jobs:
                 IFLOW_NAME: "Groovy XML Transformation"
                 PACKAGE_ID: FlashPipeDemo
                 PACKAGE_NAME: "FlashPipe Demo"
-                GIT_DIR: "$(Build.SourcesDirectory)/FlashPipe Demo/Groovy XML Transformation"
+                GIT_SRC_DIR: "$(Build.SourcesDirectory)/FlashPipe Demo/Groovy XML Transformation"
                 PARAM_FILE: "$(Build.SourcesDirectory)/FlashPipe Demo/Groovy XML Transformation/PROD/parameters.prop"
             - bash: /usr/bin/update_designtime_artifact.sh
               displayName: 'Update/Upload INVOIC02 to Invoice XML to design time'
@@ -169,7 +169,7 @@ jobs:
                 IFLOW_NAME: "INVOIC02 to Invoice XML"
                 PACKAGE_ID: FlashPipeDemo
                 PACKAGE_NAME: "FlashPipe Demo"
-                GIT_DIR: "$(Build.SourcesDirectory)/FlashPipe Demo/INVOIC02_to_Invoice_XML"
+                GIT_SRC_DIR: "$(Build.SourcesDirectory)/FlashPipe Demo/INVOIC02_to_Invoice_XML"
                 PARAM_FILE: "$(Build.SourcesDirectory)/FlashPipe Demo/INVOIC02_to_Invoice_XML/PROD/parameters.prop"
             # Deploy runtime
             - bash: /usr/bin/deploy_runtime_artifact.sh
