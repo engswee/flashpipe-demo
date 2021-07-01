@@ -11,7 +11,7 @@ variables:
 resources:
   containers:
     - container: flashpipe-lite
-      image: engswee/flashpipe:2.1.0-lite
+      image: engswee/flashpipe:2.1.1-lite
 
 jobs:
   - job: build
@@ -29,7 +29,7 @@ jobs:
           IFLOW_NAME: "Groovy XML Transformation"
           PACKAGE_ID: FlashPipeDemo
           PACKAGE_NAME: "FlashPipe Demo"
-          GIT_DIR: "$(Build.SourcesDirectory)/FlashPipe Demo/Groovy XML Transformation"
+          GIT_SRC_DIR: "$(Build.SourcesDirectory)/FlashPipe Demo/Groovy XML Transformation"
       # Deploy runtime
       - bash: /usr/bin/deploy_runtime_artifact.sh
         displayName: 'Deploy Groovy XML Transformation to runtime'
