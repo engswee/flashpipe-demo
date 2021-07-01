@@ -10,7 +10,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container:
-      image: engswee/flashpipe:2.1.0
+      image: engswee/flashpipe:2.1.1
     env:
       HOST_TMN: 33cc92b4trial.it-cpitrial02.cfapps.eu10-001.hana.ondemand.com
       HOST_OAUTH: 33cc92b4trial.authentication.eu10.hana.ondemand.com
@@ -24,7 +24,7 @@ jobs:
       # Set environment variable for source directory of IFlow
       - name: 'Set environment variables for update_designtime_artifact.sh'
         run: |
-          echo "GIT_DIR=$GITHUB_WORKSPACE/FlashPipe Demo/Groovy XML Transformation" >> $GITHUB_ENV
+          echo "GIT_SRC_DIR=$GITHUB_WORKSPACE/FlashPipe Demo/Groovy XML Transformation" >> $GITHUB_ENV
       # Upload/Update design time
       - name: 'Update/Upload Groovy XML Transformation to design time'
         run: /usr/bin/update_designtime_artifact.sh
