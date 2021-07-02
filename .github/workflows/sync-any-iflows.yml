@@ -1,0 +1,56 @@
+name: Sync Any IFlows from tenant
+
+on:
+  workflow_dispatch:
+    inputs:
+      packageId:
+        description: 'Package ID'
+        required: true
+      directory:
+        description: 'Target Git directory (relative from repository root)'
+        required: true
+      includedIds:
+        description: 'Included Ids (optional)'
+        required: false
+      excludedIds:
+        description: 'Excluded Ids (optional)'
+        required: false
+      draft:
+        description: 'Draft handling (optional) - SKIP (default value if empty), ADD, ERROR'
+        required: false
+      dirNaming:
+        description: 'Naming convention for IFlow directories (optional) - ID (default value if empty), NAME'
+        required: false
+      message:
+        description: 'Commit message (optional)'
+        required: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: engswee/flashpipe:2.1.1-lite
+    env:
+      HOST_TMN: 33cc92b4trial.it-cpitrial02.cfapps.eu10-001.hana.ondemand.com
+      HOST_OAUTH: 33cc92b4trial.authentication.eu10.hana.ondemand.com
+      OAUTH_CLIENTID: ${{ secrets.DEV_CLIENT_ID }}
+      OAUTH_CLIENTSECRET: ${{ secrets.DEV_CLIENT_SECRET }}     
+    steps:
+    - uses: actions/checkout@v2
+    - name: 'Set GIT_SRC_DIR for sync_to_git_repository.sh'
+      run: |
+        echo "GIT_SRC_DIR=$GITHUB_WORKSPACE/${{ github.event.inputs.directory }}" >> $GITHUB_ENV
+    - name: 'Sync Any IFlows'
+      run: /usr/bin/sync_to_git_repository.sh
+      shell: bash
+      env:
+        PACKAGE_ID: ${{ github.event.inputs.packageId }}
+        INCLUDE_IDS: ${{ github.event.inputs.includedIds }}
+        EXCLUDE_IDS: ${{ github.event.inputs.excludedIds }}
+        DRAFT_HANDLING: ${{ github.event.inputs.draft }}
+        DIR_NAMING_TYPE: ${{ github.event.inputs.dirNaming }}
+        COMMIT_MESSAGE: ${{ github.event.inputs.message }}
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: ${{ github.ref }}
