@@ -1,0 +1,32 @@
+name: Sync FlashPipe Demo Package IFlows from Tenant
+on:
+  workflow_dispatch:
+  schedule:
+    - cron:  "30 14 * * *" # Runs at 14:30 UTC
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    container:
+      image: engswee/flashpipe:2.1.1-lite
+    env:
+      HOST_TMN: 33cc92b4trial.it-cpitrial02.cfapps.eu10-001.hana.ondemand.com
+      HOST_OAUTH: 33cc92b4trial.authentication.eu10.hana.ondemand.com
+      OAUTH_CLIENTID: ${{ secrets.DEV_CLIENT_ID }}
+      OAUTH_CLIENTSECRET: ${{ secrets.DEV_CLIENT_SECRET }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: 'Set GIT_SRC_DIR for sync_to_git_repository.sh'
+        run: |
+          echo "GIT_SRC_DIR=$GITHUB_WORKSPACE/FlashPipe Demo" >> $GITHUB_ENV
+      - name: 'Sync FlashPipeDemo IFlows'
+        run: /usr/bin/sync_to_git_repository.sh
+        shell: bash
+        env:
+          PACKAGE_ID: FlashPipeDemo
+          COMMIT_MESSAGE: 'Update FlashPipeDemo package contents'
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}

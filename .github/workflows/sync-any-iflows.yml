@@ -25,7 +25,7 @@ on:
         description: 'Commit message (optional)'
         required: false
 jobs:
-  build:
+  sync:
     runs-on: ubuntu-latest
     container:
       image: engswee/flashpipe:2.1.1-lite
