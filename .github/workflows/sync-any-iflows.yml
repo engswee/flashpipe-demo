@@ -28,7 +28,7 @@ jobs:
   sync:
     runs-on: ubuntu-latest
     container:
-      image: engswee/flashpipe:2.1.1-lite
+      image: engswee/flashpipe:2.2.0-lite
     env:
       HOST_TMN: 33cc92b4trial.it-cpitrial02.cfapps.eu10-001.hana.ondemand.com
       HOST_OAUTH: 33cc92b4trial.authentication.eu10.hana.ondemand.com
