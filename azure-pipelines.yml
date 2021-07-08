@@ -11,7 +11,7 @@ variables:
 resources:
   containers:
     - container: flashpipe-lite
-      image: engswee/flashpipe:2.1.1-lite
+      image: engswee/flashpipe:2.2.0-lite
 
 jobs:
   - job: build
@@ -22,8 +22,10 @@ jobs:
         displayName: 'Update/Upload Groovy XML Transformation to design time'
         env:
           HOST_TMN: $(neo-host-tmn)
-          BASIC_USERID: $(neo-user)
-          BASIC_PASSWORD: $(neo-password)
+          HOST_OAUTH: $(neo-oauth-host)
+          HOST_OAUTH_PATH: '/oauth2/api/v1/token'
+          OAUTH_CLIENTID: $(neo-client-id)
+          OAUTH_CLIENTSECRET: $(neo-client-secret)
           IFLOW_ID: GroovyXMLTransformation
           IFLOW_NAME: "Groovy XML Transformation"
           PACKAGE_ID: FlashPipeDemo
@@ -34,6 +36,8 @@ jobs:
         displayName: 'Deploy Groovy XML Transformation to runtime'
         env:
           HOST_TMN: $(neo-host-tmn)
-          BASIC_USERID: $(neo-user)
-          BASIC_PASSWORD: $(neo-password)
+          HOST_OAUTH: $(neo-oauth-host)
+          HOST_OAUTH_PATH: '/oauth2/api/v1/token'
+          OAUTH_CLIENTID: $(neo-client-id)
+          OAUTH_CLIENTSECRET: $(neo-client-secret)
           IFLOW_ID: GroovyXMLTransformation
