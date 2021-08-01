@@ -1,0 +1,27 @@
+name: Tenant Snapshot Daily
+on:
+  schedule:
+    - cron:  "30 14 * * *" # Runs at 14:30 UTC
+jobs:
+  take_snapshot:
+    runs-on: ubuntu-latest
+    container:
+      image: engswee/flashpipe:2.x.x-lite
+    env:
+      HOST_TMN: dummy.hana.ondemand.com
+      HOST_OAUTH: dummy.authentication.eu10.hana.ondemand.com
+      OAUTH_CLIENTID: ${{ secrets.DEV_CLIENT_ID }}
+      OAUTH_CLIENTSECRET: ${{ secrets.DEV_CLIENT_SECRET }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: 'Set GIT_SRC_DIR for sync_to_git_repository.sh'
+        run: |
+          echo "GIT_SRC_DIR=$GITHUB_WORKSPACE" >> $GITHUB_ENV
+      - name: 'Take a snapshot'
+        run: /usr/bin/snapshot_to_git_repository.sh
+        shell: bash
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
