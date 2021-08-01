@@ -1,0 +1,3 @@
+#Sun Aug 01 19:32:12 UTC 2021
+Source\ Endpoint=/invoic02-mapping-qa
+Target\ Endpoint=http\://ptsv2.com/t/cpi_qa/post
