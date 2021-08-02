@@ -19,7 +19,6 @@
 
     <modules>
         <module>FlashPipe Demo</module>
-        <module>cpi-mock-message</module>
     </modules>
 
     <dependencyManagement>
@@ -140,4 +139,22 @@
             </plugins>
         </pluginManagement>
     </build>
+    <repositories>
+        <repository>
+            <id>gitlab-maven</id>
+            <url>https://gitlab.com/api/v4/projects/28508510/packages/maven</url>
+        </repository>
+    </repositories>
+
+    <distributionManagement>
+        <repository>
+            <id>gitlab-maven</id>
+            <url>https://gitlab.com/api/v4/projects/28508510/packages/maven</url>
+        </repository>
+
+        <snapshotRepository>
+            <id>gitlab-maven</id>
+            <url>https://gitlab.com/api/v4/projects/28508510/packages/maven</url>
+        </snapshotRepository>
+    </distributionManagement>
 </project>
