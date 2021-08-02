@@ -12,9 +12,9 @@ variables:
 resources:
   containers:
     - container: flashpipe
-      image: engswee/flashpipe:2.2.1
+      image: engswee/flashpipe:2.x.x
     - container: flashpipe-lite
-      image: engswee/flashpipe:2.2.1-lite
+      image: engswee/flashpipe:2.x.x-lite
 
 jobs:
   - job: build
@@ -26,7 +26,7 @@ jobs:
         displayName: 'Local unit test with Maven'
         inputs:
           goals: 'test'
-          options: '-o -s /usr/share/maven/ref/settings-docker.xml'
+          options: '-s /usr/share/maven/ref/settings-docker.xml'
       # Upload/Update design time
       - bash: /usr/bin/update_designtime_artifact.sh
         displayName: 'Update/Upload Groovy XML Transformation to design time'
