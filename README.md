@@ -11,3 +11,4 @@ Branch | Platform | Details
 [azure-pipelines-neo](https://github.com/engswee/flashpipe-demo/tree/azure-pipelines-neo) | Azure Pipelines | Single IFlow uploaded and deployed to a single tenant (OAuth on Neo environment)
 [github-actions](https://github.com/engswee/flashpipe-demo/tree/github-actions) | GitHub Actions | Single IFlow uploaded and deployed to a single tenant. Unit testing with Maven
 [github-actions-sync](https://github.com/engswee/flashpipe-demo/tree/github-actions-sync) | GitHub Actions | Sync IFlow(s) contents from tenant to GitHub repository
+[github-actions-snapshot](https://github.com/engswee/flashpipe-demo/tree/github-actions-snapshot) | GitHub Actions | Snapshot tenant's contents to GitHub repository
