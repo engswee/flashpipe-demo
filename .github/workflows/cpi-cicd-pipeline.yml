@@ -20,7 +20,7 @@ jobs:
       - name: 'Checkout Git repository'
         uses: actions/checkout@v2
       - name: 'Local unit test with Maven'
-        run: mvn clean test -o -s /usr/share/maven/ref/settings-docker.xml
+        run: mvn clean test -s /usr/share/maven/ref/settings-docker.xml
       # Set environment variable for source directory of IFlow
       - name: 'Set environment variables for update_designtime_artifact.sh'
         run: |
