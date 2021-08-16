@@ -1,0 +1,21 @@
+{
+    "TestCase": {
+        "Name": "XML Mapping Scenario 2 with DocType",
+        "IFlowID": "GroovyXMLTransformation",
+        "StartPoint": "SequenceFlow_3",
+        "EndPoint": "SequenceFlow_6",
+        "Process": "Process_1",
+        "Input": {
+            "Headers": {},
+            "Properties": {},
+            "Body": "/test-data/input/input2.xml"
+        },
+        "ExpectedOutput": {
+            "Headers": {},
+            "Properties": {
+                "DocType": "HDR"
+            },
+            "Body": "/test-data/output/output2.xml"
+        }
+    }
+}
