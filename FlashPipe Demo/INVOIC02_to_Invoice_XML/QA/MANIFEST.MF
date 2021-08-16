@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Bundle-SymbolicName: INVOIC02_to_Invoice_XML_QA
+Bundle-SymbolicName: INVOIC02_Message_Mapping_QA
 Bundle-ManifestVersion: 2
 SAP-ArtifactTrait: 
 Import-Package: com.sap.esb.application.services.cxf.interceptor,com.s
@@ -29,7 +29,7 @@ Import-Package: com.sap.esb.application.services.cxf.interceptor,com.s
  dempotency.reorg,javax.sql,org.apache.camel.processor.idempotent.jdbc
  ,org.osgi.service.blueprint;version="[1.0.0,2.0.0)"
 SAP-RuntimeProfile: iflmap
-Bundle-Name: INVOIC02 to Invoice XML QA
+Bundle-Name: INVOIC02 Message Mapping QA
 Bundle-Version: 1.0.0
 SAP-NodeType: IFLMAP
 SAP-BundleType: IntegrationFlow
