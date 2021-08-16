@@ -25,7 +25,7 @@ class XMLTransformationSpec extends Specification {
 
   def 'Scenario 1 - Order has items'() {
     given: 'the message body is initialized'
-    def msgBody = this.getClass().getResource('input1.xml').newInputStream()
+    def msgBody = this.getClass().getResource('test-data/input/input1.xml').newInputStream()
     exchange.getIn().setBody(msgBody)
     msg.setBody(exchange.getIn().getBody())
 
@@ -34,12 +34,12 @@ class XMLTransformationSpec extends Specification {
     exchange.getIn().setBody(msg.getBody())
 
     then: 'the output message body is as expected'
-    msg.getBody(String) == this.getClass().getResource('output1.xml').text.normalize()
+    msg.getBody(String) == this.getClass().getResource('test-data/output/output1.xml').text.normalize()
   }
 
   def 'Scenario 2 - Order does not have items'() {
     given: 'the message body and property are initialized'
-    def msgBody = this.getClass().getResource('input2.xml').newInputStream()
+    def msgBody = this.getClass().getResource('test-data/input/input2.xml').newInputStream()
     exchange.getIn().setBody(msgBody)
     msg.setBody(exchange.getIn().getBody())
     msg.setProperty('DocType', 'HDR')
@@ -49,6 +49,6 @@ class XMLTransformationSpec extends Specification {
     exchange.getIn().setBody(msg.getBody())
 
     then: 'the output message body is as expected'
-    msg.getBody(String) == this.getClass().getResource('output2.xml').text.normalize()
+    msg.getBody(String) == this.getClass().getResource('test-data/output/output2.xml').text.normalize()
   }
 }
