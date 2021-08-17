@@ -1,0 +1,629 @@
+<INVOIC02>
+    <IDOC BEGIN="1">
+        <EDI_DC40 SEGMENT="1">
+            <TABNAM>EDI_DC40</TABNAM>
+            <MANDT>800</MANDT>
+            <DOCNUM>0000000003911750</DOCNUM>
+            <DOCREL>740</DOCREL>
+            <STATUS>30</STATUS>
+            <DIRECT>1</DIRECT>
+            <OUTMOD>2</OUTMOD>
+            <IDOCTYP>INVOIC02</IDOCTYP>
+            <MESTYP>INVOIC</MESTYP>
+            <STDMES>INVOIC</STDMES>
+            <SNDPOR>SAPED1</SNDPOR>
+            <SNDPRT>LS</SNDPRT>
+            <SNDPRN>T90CLNT090</SNDPRN>
+            <RCVPOR>PD2CLNT100</RCVPOR>
+            <RCVPRT>LS</RCVPRT>
+            <RCVPRN>PD2CLNT100</RCVPRN>
+            <CREDAT>20200706</CREDAT>
+            <CRETIM>121729</CRETIM>
+            <SERIAL>20200629104308</SERIAL>
+        </EDI_DC40>
+        <E1EDK01 SEGMENT="1">
+            <CURCY>USD</CURCY>
+            <HWAER>USD</HWAER>
+            <WKURS>1.00000</WKURS>
+            <ZTERM>NT30</ZTERM>
+            <BSART>INVO</BSART>
+            <BELNR>1234567890</BELNR>
+            <NTGEW>1197.500</NTGEW>
+            <BRGEW>1197.500</BRGEW>
+            <GEWEI>KGM</GEWEI>
+            <FKART_RL>LR</FKART_RL>
+            <RECIPNT_NO>0000500100</RECIPNT_NO>
+            <FKTYP>L</FKTYP>
+        </E1EDK01>
+        <E1EDKA1 SEGMENT="1">
+            <PARVW>RS</PARVW>
+            <LIFNR>0000500100</LIFNR>
+            <NAME1>Sales Organization Philadelphia</NAME1>
+            <ORT01>Philadelphia</ORT01>
+            <PSTLZ>19000</PSTLZ>
+            <LAND1>US</LAND1>
+            <SPRAS>E</SPRAS>
+            <REGIO>PA</REGIO>
+            <BNAME>MKOWALCZEWSK</BNAME>
+            <PAORG>3000</PAORG>
+        </E1EDKA1>
+        <E1EDKA1 SEGMENT="1">
+            <PARVW>AG</PARVW>
+            <PARTN>0000500100</PARTN>
+            <NAME1>Kim Possible Inc. - East</NAME1>
+            <STRAS>12345 Unlimited Possibility Pkwy</STRAS>
+            <ORT01>Cambridge</ORT01>
+            <PSTLZ>02138</PSTLZ>
+            <LAND1>US</LAND1>
+            <SPRAS>E</SPRAS>
+            <ORT02>MIDDLESEX</ORT02>
+            <REGIO>MA</REGIO>
+            <SPRAS_ISO>EN</SPRAS_ISO>
+        </E1EDKA1>
+        <E1EDKA1 SEGMENT="1">
+            <PARVW>RE</PARVW>
+            <PARTN>0000500100</PARTN>
+            <NAME1>Kim Possible Inc. - East</NAME1>
+            <STRAS>12345 Unlimited Possibility Pkwy</STRAS>
+            <ORT01>Cambridge</ORT01>
+            <PSTLZ>02138</PSTLZ>
+            <LAND1>US</LAND1>
+            <SPRAS>E</SPRAS>
+            <ORT02>MIDDLESEX</ORT02>
+            <REGIO>MA</REGIO>
+            <SPRAS_ISO>EN</SPRAS_ISO>
+        </E1EDKA1>
+        <E1EDKA1 SEGMENT="1">
+            <PARVW>RG</PARVW>
+            <PARTN>0000500100</PARTN>
+            <NAME1>Kim Possible Inc. - East</NAME1>
+            <STRAS>12345 Unlimited Possibility Pkwy</STRAS>
+            <ORT01>Cambridge</ORT01>
+            <PSTLZ>02138</PSTLZ>
+            <LAND1>US</LAND1>
+            <SPRAS>E</SPRAS>
+            <ORT02>MIDDLESEX</ORT02>
+            <REGIO>MA</REGIO>
+            <SPRAS_ISO>EN</SPRAS_ISO>
+        </E1EDKA1>
+        <E1EDKA1 SEGMENT="1">
+            <PARVW>BK</PARVW>
+            <LIFNR>3000</LIFNR>
+            <NAME1>IDES US INC</NAME1>
+            <NAME2>Dan Gallagher</NAME2>
+            <STRAS>1230 Lincoln Avenue</STRAS>
+            <ORT01>NEW YORK</ORT01>
+            <COUNC>NY</COUNC>
+            <PSTLZ>10019</PSTLZ>
+            <LAND1>US</LAND1>
+            <TELF1>212-345-0983</TELF1>
+            <TELFX>212-345-5693</TELFX>
+            <ORT02>NEW YORK</ORT02>
+            <REGIO>NY</REGIO>
+        </E1EDKA1>
+        <E1EDK02 SEGMENT="1">
+            <QUALF>009</QUALF>
+            <BELNR>1234567890</BELNR>
+            <DATUM>20200629</DATUM>
+        </E1EDK02>
+        <E1EDK02 SEGMENT="1">
+            <QUALF>001</QUALF>
+            <BELNR>IFTT_B_73052</BELNR>
+        </E1EDK02>
+        <E1EDK02 SEGMENT="1">
+            <QUALF>002</QUALF>
+            <BELNR>0000045355</BELNR>
+            <DATUM>20200629</DATUM>
+        </E1EDK02>
+        <E1EDK02 SEGMENT="1">
+            <QUALF>012</QUALF>
+            <BELNR>0080018368</BELNR>
+            <DATUM>20200709</DATUM>
+        </E1EDK02>
+        <E1EDK02 SEGMENT="1">
+            <QUALF>017</QUALF>
+            <BELNR>0000045355</BELNR>
+        </E1EDK02>
+        <E1EDK02 SEGMENT="1">
+            <QUALF>087</QUALF>
+            <BELNR>0090040348</BELNR>
+        </E1EDK02>
+        <E1EDK03 SEGMENT="1">
+            <IDDAT>026</IDDAT>
+            <DATUM>20200629</DATUM>
+        </E1EDK03>
+        <E1EDK03 SEGMENT="1">
+            <IDDAT>001</IDDAT>
+            <DATUM>20200709</DATUM>
+        </E1EDK03>
+        <E1EDK03 SEGMENT="1">
+            <IDDAT>012</IDDAT>
+            <DATUM>20200629</DATUM>
+        </E1EDK03>
+        <E1EDK03 SEGMENT="1">
+            <IDDAT>011</IDDAT>
+            <DATUM>20200629</DATUM>
+        </E1EDK03>
+        <E1EDK03 SEGMENT="1">
+            <IDDAT>024</IDDAT>
+            <DATUM>20200629</DATUM>
+        </E1EDK03>
+        <E1EDK03 SEGMENT="1">
+            <IDDAT>028</IDDAT>
+            <DATUM>20200729</DATUM>
+        </E1EDK03>
+        <E1EDK03 SEGMENT="1">
+            <IDDAT>048</IDDAT>
+            <DATUM>20200629</DATUM>
+        </E1EDK03>
+        <E1EDK17 SEGMENT="1">
+            <QUALF>001</QUALF>
+            <LKOND>CIF</LKOND>
+            <LKTEXT>Costs, insurance &#38; freight</LKTEXT>
+        </E1EDK17>
+        <E1EDK17 SEGMENT="1">
+            <QUALF>002</QUALF>
+            <LKOND>CIF</LKOND>
+            <LKTEXT>Chicago</LKTEXT>
+        </E1EDK17>
+        <E1EDK18 SEGMENT="1">
+            <QUALF>001</QUALF>
+            <TAGE>30</TAGE>
+            <PRZNT>0</PRZNT>
+            <ZTERM_TXT>Up to 07/29/2020 without deduction</ZTERM_TXT>
+        </E1EDK18>
+        <E1EDK18 SEGMENT="1">
+            <QUALF>005</QUALF>
+            <ZTERM_TXT>Net 30</ZTERM_TXT>
+        </E1EDK18>
+        <E1EDK28 SEGMENT="1">
+            <BCOUN>US</BCOUN>
+            <BRNUM>134329042</BRNUM>
+            <BNAME>Citibank</BNAME>
+            <BALOC>New York</BALOC>
+            <ACNUM>30000100</ACNUM>
+            <ACNAM>Sales Organization Philadelphia</ACNAM>
+        </E1EDK28>
+        <E1EDK28 SEGMENT="1">
+            <BCOUN>US</BCOUN>
+            <BRNUM>123123123</BRNUM>
+            <BNAME>Citibank</BNAME>
+            <BALOC>New York</BALOC>
+            <ACNUM>55552222</ACNUM>
+            <ACNAM>Sales Organization Philadelphia</ACNAM>
+        </E1EDK28>
+        <E1EDK28 SEGMENT="1">
+            <BCOUN>US</BCOUN>
+            <BRNUM>238100235</BRNUM>
+            <BNAME>Mellon Bank</BNAME>
+            <BALOC>New York</BALOC>
+            <ACNUM>23494663</ACNUM>
+            <ACNAM>Sales Organization Philadelphia</ACNAM>
+        </E1EDK28>
+        <E1EDK28 SEGMENT="1">
+            <BCOUN>US</BCOUN>
+            <BRNUM>123445678</BRNUM>
+            <BNAME>Chase Manhattan Bank</BNAME>
+            <BALOC>New York City</BALOC>
+            <ACNUM>123456</ACNUM>
+            <ACNAM>Sales Organization Philadelphia</ACNAM>
+        </E1EDK28>
+        <E1EDK28 SEGMENT="1">
+            <BCOUN>GB</BCOUN>
+            <BRNUM>6800</BRNUM>
+            <BNAME>Bank of America</BNAME>
+            <BALOC>London</BALOC>
+            <ACNUM>11113550</ACNUM>
+            <ACNAM>Sales Organization Philadelphia</ACNAM>
+        </E1EDK28>
+        <E1EDK28 SEGMENT="1">
+            <BCOUN>US</BCOUN>
+            <BRNUM>938573829</BRNUM>
+            <BNAME>Bank of America</BNAME>
+            <BALOC>Wilmington</BALOC>
+            <ACNUM>111113520</ACNUM>
+            <ACNAM>Sales Organization Philadelphia</ACNAM>
+        </E1EDK28>
+        <E1EDK28 SEGMENT="1">
+            <BCOUN>US</BCOUN>
+            <BRNUM>121000358</BRNUM>
+            <BNAME>Chase Manhattan Bank</BNAME>
+            <BALOC>New York</BALOC>
+            <ACNUM>9337590</ACNUM>
+            <ACNAM>Sales Organization Philadelphia</ACNAM>
+        </E1EDK28>
+        <E1EDK28 SEGMENT="1">
+            <BCOUN>US</BCOUN>
+            <BRNUM>021000089</BRNUM>
+            <BNAME>Citibank</BNAME>
+            <BALOC>New York</BALOC>
+            <ACNUM>1111113420</ACNUM>
+            <ACNAM>Sales Organization Philadelphia</ACNAM>
+        </E1EDK28>
+        <E1EDK28 SEGMENT="1">
+            <BCOUN>US</BCOUN>
+            <BRNUM>222222222</BRNUM>
+            <BNAME>Demobank Americas (IHC)</BNAME>
+            <BALOC>New York</BALOC>
+            <ACNUM>22010300</ACNUM>
+            <ACNAM>Sales Organization Philadelphia</ACNAM>
+        </E1EDK28>
+        <E1EDK28 SEGMENT="1">
+            <BCOUN>DE</BCOUN>
+            <BRNUM>11111111</BRNUM>
+            <BNAME>Demobank Europe (IHC)</BNAME>
+            <BALOC>Frankfurt a.M.</BALOC>
+            <ACNUM>10490300</ACNUM>
+            <ACNAM>Sales Organization Philadelphia</ACNAM>
+        </E1EDK28>
+        <E1EDK28 SEGMENT="1">
+            <BCOUN>US</BCOUN>
+            <BRNUM>123456784</BRNUM>
+            <BNAME>JPMorgan</BNAME>
+            <BALOC>New York</BALOC>
+            <ACNUM>4543588</ACNUM>
+            <ACNAM>Sales Organization Philadelphia</ACNAM>
+        </E1EDK28>
+        <E1EDK14 SEGMENT="1">
+            <QUALF>008</QUALF>
+            <ORGID>3000</ORGID>
+        </E1EDK14>
+        <E1EDK14 SEGMENT="1">
+            <QUALF>007</QUALF>
+            <ORGID>10</ORGID>
+        </E1EDK14>
+        <E1EDK14 SEGMENT="1">
+            <QUALF>006</QUALF>
+            <ORGID>00</ORGID>
+        </E1EDK14>
+        <E1EDK14 SEGMENT="1">
+            <QUALF>015</QUALF>
+            <ORGID>F2</ORGID>
+        </E1EDK14>
+        <E1EDK14 SEGMENT="1">
+            <QUALF>003</QUALF>
+            <ORGID>3000</ORGID>
+        </E1EDK14>
+        <E1EDK14 SEGMENT="1">
+            <QUALF>021</QUALF>
+            <ORGID>M</ORGID>
+        </E1EDK14>
+        <E1EDK14 SEGMENT="1">
+            <QUALF>016</QUALF>
+            <ORGID>3010</ORGID>
+        </E1EDK14>
+        <E1EDP01 SEGMENT="1">
+            <POSEX>000010</POSEX>
+            <MENGE>30.000</MENGE>
+            <MENEE>PCE</MENEE>
+            <NTGEW>615.000</NTGEW>
+            <GEWEI>KGM</GEWEI>
+            <BRGEW>615.000</BRGEW>
+            <PSTYV>TAN</PSTYV>
+            <WERKS>3000</WERKS>
+            <E1EDP02 SEGMENT="1">
+                <QUALF>001</QUALF>
+                <BELNR>IFTT_B_73052</BELNR>
+            </E1EDP02>
+            <E1EDP02 SEGMENT="1">
+                <QUALF>002</QUALF>
+                <BELNR>0000045355</BELNR>
+                <ZEILE>000010</ZEILE>
+                <DATUM>20200629</DATUM>
+            </E1EDP02>
+            <E1EDP02 SEGMENT="1">
+                <QUALF>016</QUALF>
+                <BELNR>0080018368</BELNR>
+                <ZEILE>000010</ZEILE>
+                <DATUM>20200709</DATUM>
+            </E1EDP02>
+            <E1EDP03 SEGMENT="1">
+                <IDDAT>029</IDDAT>
+                <DATUM>20200629</DATUM>
+            </E1EDP03>
+            <E1EDP03 SEGMENT="1">
+                <IDDAT>001</IDDAT>
+                <DATUM>20200709</DATUM>
+            </E1EDP03>
+            <E1EDP03 SEGMENT="1">
+                <IDDAT>011</IDDAT>
+                <DATUM>20200629</DATUM>
+            </E1EDP03>
+            <E1EDP03 SEGMENT="1">
+                <IDDAT>025</IDDAT>
+                <DATUM>20200629</DATUM>
+            </E1EDP03>
+            <E1EDP03 SEGMENT="1">
+                <IDDAT>027</IDDAT>
+                <DATUM>20200629</DATUM>
+            </E1EDP03>
+            <E1EDP03 SEGMENT="1">
+                <IDDAT>023</IDDAT>
+                <DATUM>20200629</DATUM>
+            </E1EDP03>
+            <E1EDP19 SEGMENT="1">
+                <QUALF>002</QUALF>
+                <IDTNR>M-10</IDTNR>
+                <KTEXT>Flatscreen MS 1775P</KTEXT>
+            </E1EDP19>
+            <E1EDP26 SEGMENT="1">
+                <QUALF>003</QUALF>
+                <BETRG>43470.00</BETRG>
+            </E1EDP26>
+            <E1EDP26 SEGMENT="1">
+                <QUALF>010</QUALF>
+                <BETRG>43470.00</BETRG>
+            </E1EDP26>
+            <E1EDP26 SEGMENT="1">
+                <QUALF>011</QUALF>
+                <BETRG>43470.00</BETRG>
+            </E1EDP26>
+            <E1EDP26 SEGMENT="1">
+                <QUALF>012</QUALF>
+                <BETRG>43470.00</BETRG>
+            </E1EDP26>
+            <E1EDP26 SEGMENT="1">
+                <QUALF>001</QUALF>
+                <BETRG>1449.00</BETRG>
+            </E1EDP26>
+            <E1EDP26 SEGMENT="1">
+                <QUALF>002</QUALF>
+                <BETRG>43470.00</BETRG>
+            </E1EDP26>
+            <E1EDPA1 SEGMENT="1">
+                <PARVW>WE</PARVW>
+                <PARTN>0000500100</PARTN>
+                <NAME1>Kim Possible Inc. - East</NAME1>
+                <STRAS>12345 Unlimited Possibility Pkwy</STRAS>
+                <ORT01>Cambridge</ORT01>
+                <PSTLZ>02138</PSTLZ>
+                <LAND1>US</LAND1>
+                <SPRAS>E</SPRAS>
+                <ORT02>MIDDLESEX</ORT02>
+                <HAUSN>000000</HAUSN>
+                <REGIO>MA</REGIO>
+                <SPRAS_ISO>EN</SPRAS_ISO>
+            </E1EDPA1>
+            <E1EDP05 SEGMENT="1">
+                <ALCKZ>+</ALCKZ>
+                <KOTXT>Gross</KOTXT>
+                <BETRG>43470.00</BETRG>
+                <KRATE>1449.00</KRATE>
+                <UPRBS>1</UPRBS>
+                <MEAUN>PCE</MEAUN>
+                <KOEIN>USD</KOEIN>
+                <KOBAS>30</KOBAS>
+            </E1EDP05>
+        </E1EDP01>
+        <E1EDP01 SEGMENT="1">
+            <POSEX>000020</POSEX>
+            <MENGE>15.000</MENGE>
+            <MENEE>PCE</MENEE>
+            <NTGEW>232.500</NTGEW>
+            <GEWEI>KGM</GEWEI>
+            <BRGEW>232.500</BRGEW>
+            <PSTYV>TAN</PSTYV>
+            <WERKS>3000</WERKS>
+            <E1EDP02 SEGMENT="1">
+                <QUALF>001</QUALF>
+                <BELNR>IFTT_B_73052</BELNR>
+            </E1EDP02>
+            <E1EDP02 SEGMENT="1">
+                <QUALF>002</QUALF>
+                <BELNR>0000045355</BELNR>
+                <ZEILE>000020</ZEILE>
+                <DATUM>20200629</DATUM>
+            </E1EDP02>
+            <E1EDP02 SEGMENT="1">
+                <QUALF>016</QUALF>
+                <BELNR>0080018368</BELNR>
+                <ZEILE>000020</ZEILE>
+                <DATUM>20200709</DATUM>
+            </E1EDP02>
+            <E1EDP03 SEGMENT="1">
+                <IDDAT>029</IDDAT>
+                <DATUM>20200629</DATUM>
+            </E1EDP03>
+            <E1EDP03 SEGMENT="1">
+                <IDDAT>001</IDDAT>
+                <DATUM>20200709</DATUM>
+            </E1EDP03>
+            <E1EDP03 SEGMENT="1">
+                <IDDAT>011</IDDAT>
+                <DATUM>20200629</DATUM>
+            </E1EDP03>
+            <E1EDP03 SEGMENT="1">
+                <IDDAT>025</IDDAT>
+                <DATUM>20200629</DATUM>
+            </E1EDP03>
+            <E1EDP03 SEGMENT="1">
+                <IDDAT>027</IDDAT>
+                <DATUM>20200629</DATUM>
+            </E1EDP03>
+            <E1EDP03 SEGMENT="1">
+                <IDDAT>023</IDDAT>
+                <DATUM>20200629</DATUM>
+            </E1EDP03>
+            <E1EDP19 SEGMENT="1">
+                <QUALF>002</QUALF>
+                <IDTNR>M-11</IDTNR>
+                <KTEXT>Flatscreen MS 1785P</KTEXT>
+            </E1EDP19>
+            <E1EDP26 SEGMENT="1">
+                <QUALF>003</QUALF>
+                <BETRG>23085.00</BETRG>
+            </E1EDP26>
+            <E1EDP26 SEGMENT="1">
+                <QUALF>010</QUALF>
+                <BETRG>23085.00</BETRG>
+            </E1EDP26>
+            <E1EDP26 SEGMENT="1">
+                <QUALF>011</QUALF>
+                <BETRG>23085.00</BETRG>
+            </E1EDP26>
+            <E1EDP26 SEGMENT="1">
+                <QUALF>012</QUALF>
+                <BETRG>23085.00</BETRG>
+            </E1EDP26>
+            <E1EDP26 SEGMENT="1">
+                <QUALF>001</QUALF>
+                <BETRG>1539.00</BETRG>
+            </E1EDP26>
+            <E1EDP26 SEGMENT="1">
+                <QUALF>002</QUALF>
+                <BETRG>23085.00</BETRG>
+            </E1EDP26>
+            <E1EDPA1 SEGMENT="1">
+                <PARVW>WE</PARVW>
+                <PARTN>0000500100</PARTN>
+                <NAME1>Kim Possible Inc. - East</NAME1>
+                <STRAS>12345 Unlimited Possibility Pkwy</STRAS>
+                <ORT01>Cambridge</ORT01>
+                <PSTLZ>02138</PSTLZ>
+                <LAND1>US</LAND1>
+                <SPRAS>E</SPRAS>
+                <ORT02>MIDDLESEX</ORT02>
+                <HAUSN>000000</HAUSN>
+                <REGIO>MA</REGIO>
+                <SPRAS_ISO>EN</SPRAS_ISO>
+            </E1EDPA1>
+            <E1EDP05 SEGMENT="1">
+                <ALCKZ>+</ALCKZ>
+                <KOTXT>Gross</KOTXT>
+                <BETRG>23085.00</BETRG>
+                <KRATE>1539.00</KRATE>
+                <UPRBS>1</UPRBS>
+                <MEAUN>PCE</MEAUN>
+                <KOEIN>USD</KOEIN>
+                <KOBAS>15</KOBAS>
+            </E1EDP05>
+        </E1EDP01>
+        <E1EDP01 SEGMENT="1">
+            <POSEX>000030</POSEX>
+            <MENGE>25.000</MENGE>
+            <MENEE>PCE</MENEE>
+            <NTGEW>350.000</NTGEW>
+            <GEWEI>KGM</GEWEI>
+            <BRGEW>350.000</BRGEW>
+            <PSTYV>TAN</PSTYV>
+            <WERKS>3000</WERKS>
+            <E1EDP02 SEGMENT="1">
+                <QUALF>001</QUALF>
+                <BELNR>IFTT_B_73052</BELNR>
+            </E1EDP02>
+            <E1EDP02 SEGMENT="1">
+                <QUALF>002</QUALF>
+                <BELNR>0000045355</BELNR>
+                <ZEILE>000030</ZEILE>
+                <DATUM>20200629</DATUM>
+            </E1EDP02>
+            <E1EDP02 SEGMENT="1">
+                <QUALF>016</QUALF>
+                <BELNR>0080018368</BELNR>
+                <ZEILE>000030</ZEILE>
+                <DATUM>20200709</DATUM>
+            </E1EDP02>
+            <E1EDP03 SEGMENT="1">
+                <IDDAT>029</IDDAT>
+                <DATUM>20200629</DATUM>
+            </E1EDP03>
+            <E1EDP03 SEGMENT="1">
+                <IDDAT>001</IDDAT>
+                <DATUM>20200709</DATUM>
+            </E1EDP03>
+            <E1EDP03 SEGMENT="1">
+                <IDDAT>011</IDDAT>
+                <DATUM>20200629</DATUM>
+            </E1EDP03>
+            <E1EDP03 SEGMENT="1">
+                <IDDAT>025</IDDAT>
+                <DATUM>20200629</DATUM>
+            </E1EDP03>
+            <E1EDP03 SEGMENT="1">
+                <IDDAT>027</IDDAT>
+                <DATUM>20200629</DATUM>
+            </E1EDP03>
+            <E1EDP03 SEGMENT="1">
+                <IDDAT>023</IDDAT>
+                <DATUM>20200629</DATUM>
+            </E1EDP03>
+            <E1EDP19 SEGMENT="1">
+                <QUALF>002</QUALF>
+                <IDTNR>M-12</IDTNR>
+                <KTEXT>MAG DX 15F/Fe</KTEXT>
+            </E1EDP19>
+            <E1EDP26 SEGMENT="1">
+                <QUALF>003</QUALF>
+                <BETRG>22475.00</BETRG>
+            </E1EDP26>
+            <E1EDP26 SEGMENT="1">
+                <QUALF>010</QUALF>
+                <BETRG>22475.00</BETRG>
+            </E1EDP26>
+            <E1EDP26 SEGMENT="1">
+                <QUALF>011</QUALF>
+                <BETRG>22475.00</BETRG>
+            </E1EDP26>
+            <E1EDP26 SEGMENT="1">
+                <QUALF>012</QUALF>
+                <BETRG>22475.00</BETRG>
+            </E1EDP26>
+            <E1EDP26 SEGMENT="1">
+                <QUALF>001</QUALF>
+                <BETRG>899.00</BETRG>
+            </E1EDP26>
+            <E1EDP26 SEGMENT="1">
+                <QUALF>002</QUALF>
+                <BETRG>22475.00</BETRG>
+            </E1EDP26>
+            <E1EDPA1 SEGMENT="1">
+                <PARVW>WE</PARVW>
+                <PARTN>0000500100</PARTN>
+                <NAME1>Kim Possible Inc. - East</NAME1>
+                <STRAS>12345 Unlimited Possibility Pkwy</STRAS>
+                <ORT01>Cambridge</ORT01>
+                <PSTLZ>02138</PSTLZ>
+                <LAND1>US</LAND1>
+                <SPRAS>E</SPRAS>
+                <ORT02>MIDDLESEX</ORT02>
+                <HAUSN>000000</HAUSN>
+                <REGIO>MA</REGIO>
+                <SPRAS_ISO>EN</SPRAS_ISO>
+            </E1EDPA1>
+            <E1EDP05 SEGMENT="1">
+                <ALCKZ>+</ALCKZ>
+                <KOTXT>Gross</KOTXT>
+                <BETRG>22475.00</BETRG>
+                <KRATE>899.00</KRATE>
+                <UPRBS>1</UPRBS>
+                <MEAUN>PCE</MEAUN>
+                <KOEIN>USD</KOEIN>
+                <KOBAS>25</KOBAS>
+            </E1EDP05>
+        </E1EDP01>
+        <E1EDS01 SEGMENT="1">
+            <SUMID>001</SUMID>
+            <SUMME>3</SUMME>
+        </E1EDS01>
+        <E1EDS01 SEGMENT="1">
+            <SUMID>012</SUMID>
+            <SUMME>0</SUMME>
+            <WAERQ>USD</WAERQ>
+        </E1EDS01>
+        <E1EDS01 SEGMENT="1">
+            <SUMID>005</SUMID>
+            <SUMME>0</SUMME>
+            <WAERQ>USD</WAERQ>
+        </E1EDS01>
+        <E1EDS01 SEGMENT="1">
+            <SUMID>011</SUMID>
+            <SUMME>89030.00</SUMME>
+            <WAERQ>USD</WAERQ>
+        </E1EDS01>
+        <E1EDS01 SEGMENT="1">
+            <SUMID>010</SUMID>
+            <SUMME>89030.00</SUMME>
+            <WAERQ>USD</WAERQ>
+        </E1EDS01>
+    </IDOC>
+</INVOIC02>
