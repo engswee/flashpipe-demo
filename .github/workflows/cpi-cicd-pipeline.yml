@@ -4,18 +4,17 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - github-actions
+      - github-actions-simulation
 
 jobs:
   build:
     runs-on: ubuntu-latest
     container:
-      image: engswee/flashpipe:2.x.x
+      image: engswee/flashpipe:2.x.x 
     env:
-      HOST_TMN: 33cc92b4trial.it-cpitrial02.cfapps.eu10-001.hana.ondemand.com
-      HOST_OAUTH: 33cc92b4trial.authentication.eu10.hana.ondemand.com
-      OAUTH_CLIENTID: ${{ secrets.DEV_CLIENT_ID }}
-      OAUTH_CLIENTSECRET: ${{ secrets.DEV_CLIENT_SECRET }}
+      HOST_TMN: p700034-tmn.hci.eu2.hana.ondemand.com
+      BASIC_USERID: ${{ secrets.NEO_USER_ID }}
+      BASIC_PASSWORD: ${{ secrets.NEO_PASSWORD }}
     steps:
       - name: 'Checkout Git repository'
         uses: actions/checkout@v2
@@ -34,10 +33,29 @@ jobs:
           IFLOW_NAME: "Groovy XML Transformation"
           PACKAGE_ID: FlashPipeDemo
           PACKAGE_NAME: "FlashPipe Demo"
+      # Set environment variable for source directory of IFlow
+      - name: 'Set environment variables for update_designtime_artifact.sh'
+        run: |
+          echo "GIT_SRC_DIR=$GITHUB_WORKSPACE/FlashPipe Demo/INVOIC02_to_Invoice_XML" >> $GITHUB_ENV
+      # Upload/Update design time
+      - name: 'Update/Upload INVOIC02_Message_Mapping to design time'
+        run: /usr/bin/update_designtime_artifact.sh
+        shell: bash
+        env:
+          IFLOW_ID: INVOIC02_Message_Mapping
+          IFLOW_NAME: "INVOIC02 Message Mapping"
+          PACKAGE_ID: FlashPipeDemo
+          PACKAGE_NAME: "FlashPipe Demo"
+      - name: 'Simulation test with Maven'
+        run: mvn clean verify -Dskip.unit.tests -s /usr/share/maven/ref/settings-docker.xml
       # Deploy runtime
       - name: 'Deploy Groovy XML Transformation to runtime'
         run: /usr/bin/deploy_runtime_artifact.sh
         shell: bash
         env:
           IFLOW_ID: GroovyXMLTransformation
-          DELAY_LENGTH: 15
+      - name: 'Deploy INVOIC02_Message_Mapping to runtime'
+        run: /usr/bin/deploy_runtime_artifact.sh
+        shell: bash
+        env:
+          IFLOW_ID: INVOIC02_Message_Mapping
