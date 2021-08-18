@@ -12,3 +12,4 @@ Branch | Platform | Details
 [github-actions](https://github.com/engswee/flashpipe-demo/tree/github-actions) | GitHub Actions | Single IFlow uploaded and deployed to a single tenant. Unit testing with Maven
 [github-actions-sync](https://github.com/engswee/flashpipe-demo/tree/github-actions-sync) | GitHub Actions | Sync IFlow(s) contents from tenant to GitHub repository
 [github-actions-snapshot](https://github.com/engswee/flashpipe-demo/tree/github-actions-snapshot) | GitHub Actions | Snapshot tenant's contents to GitHub repository
+[github-actions-simulation](https://github.com/engswee/flashpipe-demo/tree/github-actions-simulation) | GitHub Actions | Simulation testing with Maven
