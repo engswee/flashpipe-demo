@@ -12,12 +12,4 @@
     <artifactId>GroovyXMLTransformation</artifactId>
     <version>1.0.0</version>
 
-    <dependencies>
-        <dependency>
-            <groupId>io.github.engswee</groupId>
-            <artifactId>cpi-mock-message</artifactId>
-            <version>1.0.0</version>
-        </dependency>
-    </dependencies>
-
 </project>
