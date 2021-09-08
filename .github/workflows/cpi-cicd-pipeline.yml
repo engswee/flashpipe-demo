@@ -49,13 +49,8 @@ jobs:
       - name: 'Simulation test with Maven'
         run: mvn clean verify -Dskip.unit.tests -s /usr/share/maven/ref/settings-docker.xml
       # Deploy runtime
-      - name: 'Deploy Groovy XML Transformation to runtime'
+      - name: 'Deploy IFlows to runtime'
         run: /usr/bin/deploy_runtime_artifact.sh
         shell: bash
         env:
-          IFLOW_ID: GroovyXMLTransformation
-      - name: 'Deploy INVOIC02_Message_Mapping to runtime'
-        run: /usr/bin/deploy_runtime_artifact.sh
-        shell: bash
-        env:
-          IFLOW_ID: INVOIC02_Message_Mapping
+          IFLOW_ID: GroovyXMLTransformation,INVOIC02_Message_Mapping
