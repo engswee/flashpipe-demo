@@ -54,21 +54,13 @@ jobs:
           GIT_SRC_DIR: "$(Build.SourcesDirectory)/FlashPipe Demo/INVOIC02_to_Invoice_XML"
       # Deploy runtime
       - bash: /usr/bin/deploy_runtime_artifact.sh
-        displayName: 'Deploy Groovy XML Transformation to runtime'
+        displayName: 'Deploy IFlows to runtime'
         env:
           HOST_TMN: $(dev-host-tmn)
           HOST_OAUTH: $(dev-oauth-host)
           OAUTH_CLIENTID: $(dev-client-id)
           OAUTH_CLIENTSECRET: $(dev-client-secret)
-          IFLOW_ID: GroovyXMLTransformation
-      - bash: /usr/bin/deploy_runtime_artifact.sh
-        displayName: 'Deploy INVOIC02 to Invoice XML to runtime'
-        env:
-          HOST_TMN: $(dev-host-tmn)
-          HOST_OAUTH: $(dev-oauth-host)
-          OAUTH_CLIENTID: $(dev-client-id)
-          OAUTH_CLIENTSECRET: $(dev-client-secret)
-          IFLOW_ID: INVOIC02_to_Invoice_XML
+          IFLOW_ID: GroovyXMLTransformation,INVOIC02_to_Invoice_XML
       # Publish Pipeline artifact
       - publish: $(System.DefaultWorkingDirectory)
         artifact: GitRepo
@@ -116,21 +108,13 @@ jobs:
                 PARAM_FILE: "$(Build.SourcesDirectory)/FlashPipe Demo/INVOIC02_to_Invoice_XML/QA/parameters.prop"
             # Deploy runtime
             - bash: /usr/bin/deploy_runtime_artifact.sh
-              displayName: 'Deploy Groovy XML Transformation to runtime'
+              displayName: 'Deploy IFlows to runtime'
               env:
                 HOST_TMN: $(dev-host-tmn)
                 HOST_OAUTH: $(dev-oauth-host)
                 OAUTH_CLIENTID: $(dev-client-id)
                 OAUTH_CLIENTSECRET: $(dev-client-secret)
-                IFLOW_ID: GroovyXMLTransformation_QA
-            - bash: /usr/bin/deploy_runtime_artifact.sh
-              displayName: 'Deploy INVOIC02 to Invoice XML to runtime'
-              env:
-                HOST_TMN: $(dev-host-tmn)
-                HOST_OAUTH: $(dev-oauth-host)
-                OAUTH_CLIENTID: $(dev-client-id)
-                OAUTH_CLIENTSECRET: $(dev-client-secret)
-                IFLOW_ID: INVOIC02_to_Invoice_XML_QA
+                IFLOW_ID: GroovyXMLTransformation_QA,INVOIC02_to_Invoice_XML_QA
   - deployment: deploy_prod
     container: flashpipe-lite
     dependsOn: deploy_qa
@@ -173,18 +157,10 @@ jobs:
                 PARAM_FILE: "$(Build.SourcesDirectory)/FlashPipe Demo/INVOIC02_to_Invoice_XML/PROD/parameters.prop"
             # Deploy runtime
             - bash: /usr/bin/deploy_runtime_artifact.sh
-              displayName: 'Deploy Groovy XML Transformation to runtime'
+              displayName: 'Deploy IFlows to runtime'
               env:
                 HOST_TMN: $(prod-host-tmn)
                 HOST_OAUTH: $(prod-oauth-host)
                 OAUTH_CLIENTID: $(prod-client-id)
                 OAUTH_CLIENTSECRET: $(prod-client-secret)
-                IFLOW_ID: GroovyXMLTransformation
-            - bash: /usr/bin/deploy_runtime_artifact.sh
-              displayName: 'Deploy INVOIC02 to Invoice XML to runtime'
-              env:
-                HOST_TMN: $(prod-host-tmn)
-                HOST_OAUTH: $(prod-oauth-host)
-                OAUTH_CLIENTID: $(prod-client-id)
-                OAUTH_CLIENTSECRET: $(prod-client-secret)
-                IFLOW_ID: INVOIC02_to_Invoice_XML
+                IFLOW_ID: GroovyXMLTransformation,INVOIC02_to_Invoice_XML
