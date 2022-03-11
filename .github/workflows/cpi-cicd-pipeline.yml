@@ -15,6 +15,8 @@ jobs:
       HOST_TMN: p700034-tmn.hci.eu2.hana.ondemand.com
       BASIC_USERID: ${{ secrets.NEO_USER_ID }}
       BASIC_PASSWORD: ${{ secrets.NEO_PASSWORD }}
+      PACKAGE_ID: FlashPipeDemo
+      PACKAGE_NAME: "FlashPipe Demo"
     steps:
       - name: 'Checkout Git repository'
         uses: actions/checkout@v2
@@ -31,8 +33,6 @@ jobs:
         env:
           IFLOW_ID: GroovyXMLTransformation
           IFLOW_NAME: "Groovy XML Transformation"
-          PACKAGE_ID: FlashPipeDemo
-          PACKAGE_NAME: "FlashPipe Demo"
       # Set environment variable for source directory of IFlow
       - name: 'Set environment variables for update_designtime_artifact.sh'
         run: |
@@ -44,8 +44,6 @@ jobs:
         env:
           IFLOW_ID: INVOIC02_Message_Mapping
           IFLOW_NAME: "INVOIC02 Message Mapping"
-          PACKAGE_ID: FlashPipeDemo
-          PACKAGE_NAME: "FlashPipe Demo"
       - name: 'Simulation test with Maven'
         run: mvn clean verify -Dskip.unit.tests -s /usr/share/maven/ref/settings-docker.xml
       # Deploy runtime
