@@ -12,8 +12,8 @@ jobs:
     container:
       image: engswee/flashpipe:2.x.x
     env:
-      HOST_TMN: integration-suite-a2k8hy4r.it-cpi001.cfapps.eu10.hana.ondemand.com
-      HOST_OAUTH: integration-suite-a2k8hy4r.authentication.eu10.hana.ondemand.com
+      HOST_TMN: equaliseit.it-cpi005.cfapps.eu20.hana.ondemand.com
+      HOST_OAUTH: equaliseit.authentication.eu20.hana.ondemand.com
       OAUTH_CLIENTID: ${{ secrets.DEV_CLIENT_ID }}
       OAUTH_CLIENTSECRET: ${{ secrets.DEV_CLIENT_SECRET }}
     steps:
