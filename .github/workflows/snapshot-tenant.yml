@@ -2,38 +2,35 @@ name: Tenant Snapshot
 on:
   workflow_dispatch:
     inputs:
-      directory:
-        description: 'Target Git directory (relative from repository root)'
-        required: false
       draft:
-        description: 'Draft handling (optional) - SKIP (default value if empty), ADD, ERROR'
+        description: '(Optional) Draft handling - SKIP (default value if empty), ADD, ERROR'
         required: false
       message:
-        description: 'Commit message (optional)'
+        description: '(Optional) Commit message'
         required: false
 jobs:
   take_snapshot:
     runs-on: ubuntu-latest
     container:
-      image: engswee/flashpipe:2.x.x-lite
+      image: engswee/flashpipe:3.0.0
     env:
-      HOST_TMN: equaliseit.it-cpi005.cfapps.eu20.hana.ondemand.com
-      HOST_OAUTH: equaliseit.authentication.eu20.hana.ondemand.com
-      OAUTH_CLIENTID: ${{ secrets.DEV_CLIENT_ID }}
-      OAUTH_CLIENTSECRET: ${{ secrets.DEV_CLIENT_SECRET }}
+      FLASHPIPE_TMN_HOST: equaliseit.it-cpi023.cfapps.eu20-001.hana.ondemand.com
+      FLASHPIPE_OAUTH_HOST: equaliseit.authentication.eu20.hana.ondemand.com
+      FLASHPIPE_OAUTH_CLIENTID: ${{ secrets.DEV_CLIENT_ID }}
+      FLASHPIPE_OAUTH_CLIENTSECRET: ${{ secrets.DEV_CLIENT_SECRET }} 
     steps:
-      - uses: actions/checkout@v2
-      - name: 'Set GIT_SRC_DIR for sync_to_git_repository.sh'
+      - uses: actions/checkout@v3
+      - name: 'Set FLASHPIPE_DIR_GIT_REPO for snapshot'
         run: |
-          echo "GIT_SRC_DIR=$GITHUB_WORKSPACE/${{ github.event.inputs.directory }}" >> $GITHUB_ENV
+          echo "FLASHPIPE_DIR_GIT_REPO=$GITHUB_WORKSPACE" >> $GITHUB_ENV
       - name: 'Take a snapshot'
-        run: /usr/bin/snapshot_to_git_repository.sh
+        run: /usr/bin/flashpipe snapshot
         shell: bash
         env:
-          DRAFT_HANDLING: ${{ github.event.inputs.draft }}
-          COMMIT_MESSAGE: ${{ github.event.inputs.message }}
+          FLASHPIPE_DRAFT_HANDLING: ${{ github.event.inputs.draft }}
+          FLASHPIPE_GIT_COMMIT_MSG: ${{ github.event.inputs.message }}
       - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.ref }}
+        run: git push
+        shell: bash
+        env:
+          HOME: /root
