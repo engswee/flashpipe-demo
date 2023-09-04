@@ -12,8 +12,8 @@ jobs:
     container:
       image: engswee/flashpipe:3.0.0
     env:
-      FLASHPIPE_TMN_HOST: dummy.hana.ondemand.com
-      FLASHPIPE_OAUTH_HOST: dummy.authentication.eu10.hana.ondemand.com
+      FLASHPIPE_TMN_HOST: equaliseit.it-cpi005.cfapps.eu20.hana.ondemand.com
+      FLASHPIPE_OAUTH_HOST: equaliseit.authentication.eu20.hana.ondemand.com
       FLASHPIPE_OAUTH_CLIENTID: ${{ secrets.DEV_CLIENT_ID }}
       FLASHPIPE_OAUTH_CLIENTSECRET: ${{ secrets.DEV_CLIENT_SECRET }}
     steps:
