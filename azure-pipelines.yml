@@ -7,35 +7,34 @@ pool:
 variables:
   - group: cpi-dev
 
-# https://docs.microsoft.com/en-gb/azure/devops/pipelines/process/container-phases
 resources:
   containers:
-    - container: flashpipe-lite
-      image: engswee/flashpipe:2.x.x-lite
+    - container: flashpipe
+      image: engswee/flashpipe:3.0.0
 
 jobs:
   - job: build
-    container: flashpipe-lite
+    container: flashpipe
     steps:
-      # Upload/Update design time
-      - bash: /usr/bin/update_designtime_artifact.sh
+      # Upload/Update design time artifact
+      - bash: /usr/bin/flashpipe update artifact
         displayName: 'Update/Upload Groovy XML Transformation to design time'
         env:
-          HOST_TMN: $(dev-host-tmn)
-          HOST_OAUTH: $(dev-oauth-host)
-          OAUTH_CLIENTID: $(dev-client-id)
-          OAUTH_CLIENTSECRET: $(dev-client-secret)
-          IFLOW_ID: GroovyXMLTransformation
-          IFLOW_NAME: "Groovy XML Transformation"
-          PACKAGE_ID: FlashPipeDemo
-          PACKAGE_NAME: "FlashPipe Demo"
-          GIT_SRC_DIR: "$(Build.SourcesDirectory)/FlashPipe Demo/Groovy XML Transformation"
-      # Deploy runtime
-      - bash: /usr/bin/deploy_runtime_artifact.sh
+          FLASHPIPE_TMN_HOST: $(dev-host-tmn)
+          FLASHPIPE_OAUTH_HOST: $(dev-oauth-host)
+          FLASHPIPE_OAUTH_CLIENTID: $(dev-client-id)
+          FLASHPIPE_OAUTH_CLIENTSECRET: $(dev-client-secret)
+          FLASHPIPE_ARTIFACT_ID: GroovyXMLTransformation
+          FLASHPIPE_ARTIFACT_NAME: "Groovy XML Transformation"
+          FLASHPIPE_PACKAGE_ID: FlashPipeDemo
+          FLASHPIPE_PACKAGE_NAME: "FlashPipe Demo"
+          FLASHPIPE_DIR_ARTIFACT: "$(Build.SourcesDirectory)/FlashPipe Demo/Groovy XML Transformation"
+      # Deploy to runtime
+      - bash: /usr/bin/flashpipe deploy
         displayName: 'Deploy Groovy XML Transformation to runtime'
         env:
-          HOST_TMN: $(dev-host-tmn)
-          BASIC_USERID: $(dev-user)
-          BASIC_PASSWORD: $(dev-password)
-          IFLOW_ID: GroovyXMLTransformation
-          DELAY_LENGTH: 15
+          FLASHPIPE_TMN_HOST: $(dev-host-tmn)
+          FLASHPIPE_OAUTH_HOST: $(dev-oauth-host)
+          FLASHPIPE_OAUTH_CLIENTID: $(dev-client-id)
+          FLASHPIPE_OAUTH_CLIENTSECRET: $(dev-client-secret)
+          FLASHPIPE_ARTIFACT_IDS: GroovyXMLTransformation
