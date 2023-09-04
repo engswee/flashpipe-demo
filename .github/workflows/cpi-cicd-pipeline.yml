@@ -10,34 +10,29 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container:
-      image: engswee/flashpipe:2.x.x
+      image: engswee/flashpipe:3.0.0
     env:
-      HOST_TMN: equaliseit.it-cpi005.cfapps.eu20.hana.ondemand.com
-      HOST_OAUTH: equaliseit.authentication.eu20.hana.ondemand.com
-      OAUTH_CLIENTID: ${{ secrets.DEV_CLIENT_ID }}
-      OAUTH_CLIENTSECRET: ${{ secrets.DEV_CLIENT_SECRET }}
+      FLASHPIPE_TMN_HOST: dummy.hana.ondemand.com
+      FLASHPIPE_OAUTH_HOST: dummy.authentication.eu10.hana.ondemand.com
+      FLASHPIPE_OAUTH_CLIENTID: ${{ secrets.DEV_CLIENT_ID }}
+      FLASHPIPE_OAUTH_CLIENTSECRET: ${{ secrets.DEV_CLIENT_SECRET }}
     steps:
-      - name: 'Checkout Git repository'
-        uses: actions/checkout@v2
-      - name: 'Local unit test with Maven'
-        run: mvn clean test -s /usr/share/maven/ref/settings-docker.xml
+      - uses: actions/checkout@v3
       # Set environment variable for source directory of IFlow
-      - name: 'Set environment variables for update_designtime_artifact.sh'
-        run: |
-          echo "GIT_SRC_DIR=$GITHUB_WORKSPACE/FlashPipe Demo/Groovy XML Transformation" >> $GITHUB_ENV
-      # Upload/Update design time
+      - run: |
+          echo "FLASHPIPE_DIR_ARTIFACT=$GITHUB_WORKSPACE/FlashPipe Demo/Groovy XML Transformation" >> $GITHUB_ENV
+      # Upload/Update design time artifact
       - name: 'Update/Upload Groovy XML Transformation to design time'
-        run: /usr/bin/update_designtime_artifact.sh
+        run: /usr/bin/flashpipe update artifact
         shell: bash
         env:
-          IFLOW_ID: GroovyXMLTransformation
-          IFLOW_NAME: "Groovy XML Transformation"
-          PACKAGE_ID: FlashPipeDemo
-          PACKAGE_NAME: "FlashPipe Demo"
-      # Deploy runtime
+          FLASHPIPE_ARTIFACT_ID: GroovyXMLTransformation
+          FLASHPIPE_ARTIFACT_NAME: "Groovy XML Transformation"
+          FLASHPIPE_PACKAGE_ID: FlashPipeDemo
+          FLASHPIPE_PACKAGE_NAME: "FlashPipe Demo"
+      # Deploy to runtime
       - name: 'Deploy Groovy XML Transformation to runtime'
-        run: /usr/bin/deploy_runtime_artifact.sh
+        run: /usr/bin/flashpipe deploy
         shell: bash
         env:
-          IFLOW_ID: GroovyXMLTransformation
-          DELAY_LENGTH: 15
+          FLASHPIPE_ARTIFACT_IDS: GroovyXMLTransformation
