@@ -15,8 +15,17 @@ resources:
       image: engswee/flashpipe:3.0.0
 
 jobs:
+  - job: unit_test
+    steps:
+      - task: Maven@3
+        displayName: 'Unit test'
+        inputs:
+          testRunTitle: 'Unit test'
+          jdkVersionOption: '1.8'
+          goals: 'test'
   - job: build
     container: flashpipe
+    dependsOn: unit_test
     steps:
       # Upload/Update design time
       - bash: /usr/bin/flashpipe update artifact
