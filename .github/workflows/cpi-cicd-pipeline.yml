@@ -6,7 +6,13 @@ on:
     branches:
       - github-actions
 
+env:
+  FLASHPIPE_TMN_HOST: equaliseit.it-cpi023.cfapps.eu20-001.hana.ondemand.com
+  FLASHPIPE_OAUTH_HOST: equaliseit.authentication.eu20.hana.ondemand.com
+  FLASHPIPE_OAUTH_CLIENTID: ${{ secrets.DEV_CLIENT_ID }}
+  FLASHPIPE_OAUTH_CLIENTSECRET: ${{ secrets.DEV_CLIENT_SECRET }}
 jobs:
+# Unit test
   unit_test:
     runs-on: ubuntu-latest
     steps:
@@ -15,22 +21,17 @@ jobs:
         with:
           java-version: '8'
           distribution: 'temurin'
-      # Unit test
       - name: 'Local unit test with Maven'
         run: mvn clean test
-  build:
+# Update designtime
+  update:
     runs-on: ubuntu-latest
     needs: unit_test
     container:
       image: engswee/flashpipe:3.0.0
-    env:
-      FLASHPIPE_TMN_HOST: equaliseit.it-cpi023.cfapps.eu20-001.hana.ondemand.com
-      FLASHPIPE_OAUTH_HOST: equaliseit.authentication.eu20.hana.ondemand.com
-      FLASHPIPE_OAUTH_CLIENTID: ${{ secrets.DEV_CLIENT_ID }}
-      FLASHPIPE_OAUTH_CLIENTSECRET: ${{ secrets.DEV_CLIENT_SECRET }}
     steps:
-      - uses: actions/checkout@v3
-      # Set environment variable for source directory of IFlow
+      - uses: actions/checkout@v4
+      # Set environment variable for source directory of Integration Flow
       - run: |
           echo "FLASHPIPE_DIR_ARTIFACT=$GITHUB_WORKSPACE/FlashPipe Demo/Groovy XML Transformation" >> $GITHUB_ENV
       # Upload/Update design time artifact
@@ -42,9 +43,73 @@ jobs:
           FLASHPIPE_ARTIFACT_NAME: "Groovy XML Transformation"
           FLASHPIPE_PACKAGE_ID: FlashPipeDemo
           FLASHPIPE_PACKAGE_NAME: "FlashPipe Demo"
-      # Deploy to runtime
+      # Set environment variable for source directory of Message Mapping
+      - run: |
+          echo "FLASHPIPE_DIR_ARTIFACT=$GITHUB_WORKSPACE/FlashPipe Demo/Sample_Message_Mapping" >> $GITHUB_ENV
+      # Upload/Update design time artifact
+      - name: 'Update/Upload Groovy XML Transformation to design time'
+        run: /usr/bin/flashpipe update artifact
+        shell: bash
+        env:
+          FLASHPIPE_ARTIFACT_ID: Sample_Message_Mapping
+          FLASHPIPE_ARTIFACT_NAME: "Sample Message Mapping"
+          FLASHPIPE_PACKAGE_ID: FlashPipeDemo
+          FLASHPIPE_PACKAGE_NAME: "FlashPipe Demo"
+          FLASHPIPE_ARTIFACT_TYPE: MessageMapping
+      # Set environment variable for source directory of Script Collection
+      - run: |
+          echo "FLASHPIPE_DIR_ARTIFACT=$GITHUB_WORKSPACE/FlashPipe Demo/Sample_Script_Collection" >> $GITHUB_ENV
+      # Upload/Update design time artifact
+      - name: 'Update/Upload Groovy XML Transformation to design time'
+        run: /usr/bin/flashpipe update artifact
+        shell: bash
+        env:
+          FLASHPIPE_ARTIFACT_ID: Sample_Script_Collection
+          FLASHPIPE_ARTIFACT_NAME: "Sample Script Collection"
+          FLASHPIPE_PACKAGE_ID: FlashPipeDemo
+          FLASHPIPE_PACKAGE_NAME: "FlashPipe Demo"
+          FLASHPIPE_ARTIFACT_TYPE: ScriptCollection
+      # Set environment variable for source directory of Value Mapping
+      - run: |
+          echo "FLASHPIPE_DIR_ARTIFACT=$GITHUB_WORKSPACE/FlashPipe Demo/Sample_Value_Mapping" >> $GITHUB_ENV
+      # Upload/Update design time artifact
+      - name: 'Update/Upload Groovy XML Transformation to design time'
+        run: /usr/bin/flashpipe update artifact
+        shell: bash
+        env:
+          FLASHPIPE_ARTIFACT_ID: Sample_Value_Mapping
+          FLASHPIPE_ARTIFACT_NAME: "Sample Value Mapping"
+          FLASHPIPE_PACKAGE_ID: FlashPipeDemo
+          FLASHPIPE_PACKAGE_NAME: "FlashPipe Demo"
+          FLASHPIPE_ARTIFACT_TYPE: ValueMapping
+# Deploy to runtime
+  deploy:
+    runs-on: ubuntu-latest
+    needs: update
+    container:
+      image: engswee/flashpipe:3.0.0
+    steps:
+      - uses: actions/checkout@v4
       - name: 'Deploy Groovy XML Transformation to runtime'
         run: /usr/bin/flashpipe deploy
         shell: bash
         env:
           FLASHPIPE_ARTIFACT_IDS: GroovyXMLTransformation
+      - name: 'Deploy Groovy XML Transformation to runtime'
+        run: /usr/bin/flashpipe deploy
+        shell: bash
+        env:
+          FLASHPIPE_ARTIFACT_IDS: Sample_Message_Mapping
+          FLASHPIPE_ARTIFACT_TYPE: MessageMapping
+      - name: 'Deploy Groovy XML Transformation to runtime'
+        run: /usr/bin/flashpipe deploy
+        shell: bash
+        env:
+          FLASHPIPE_ARTIFACT_IDS: Sample_Script_Collection
+          FLASHPIPE_ARTIFACT_TYPE: ScriptCollection
+      - name: 'Deploy Groovy XML Transformation to runtime'
+        run: /usr/bin/flashpipe deploy
+        shell: bash
+        env:
+          FLASHPIPE_ARTIFACT_IDS: Sample_Value_Mapping
+          FLASHPIPE_ARTIFACT_TYPE: ValueMapping
