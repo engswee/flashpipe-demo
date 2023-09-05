@@ -12,60 +12,51 @@ variables:
 resources:
   containers:
     - container: flashpipe
-      image: engswee/flashpipe:2.x.x
-    - container: flashpipe-lite
-      image: engswee/flashpipe:2.x.x-lite
+      image: engswee/flashpipe:3.0.0
 
 jobs:
   - job: build
     container: flashpipe
     steps:
-      # Local unit testing
-      # https://docs.microsoft.com/azure/devops/pipelines/tasks/build/maven
-      - task: Maven@3
-        displayName: 'Local unit test with Maven'
-        inputs:
-          goals: 'test'
-          options: '-s /usr/share/maven/ref/settings-docker.xml'
       # Upload/Update design time
-      - bash: /usr/bin/update_designtime_artifact.sh
+      - bash: /usr/bin/flashpipe update artifact
         displayName: 'Update/Upload Groovy XML Transformation to design time'
         env:
-          HOST_TMN: $(dev-host-tmn)
-          HOST_OAUTH: $(dev-oauth-host)
-          OAUTH_CLIENTID: $(dev-client-id)
-          OAUTH_CLIENTSECRET: $(dev-client-secret)
-          IFLOW_ID: GroovyXMLTransformation
-          IFLOW_NAME: "Groovy XML Transformation"
-          PACKAGE_ID: FlashPipeDemo
-          PACKAGE_NAME: "FlashPipe Demo"
-          GIT_SRC_DIR: "$(Build.SourcesDirectory)/FlashPipe Demo/Groovy XML Transformation"
-      - bash: /usr/bin/update_designtime_artifact.sh
+          FLASHPIPE_TMN_HOST: $(dev-host-tmn)
+          FLASHPIPE_OAUTH_HOST: $(dev-oauth-host)
+          FLASHPIPE_OAUTH_CLIENTID: $(dev-client-id)
+          FLASHPIPE_OAUTH_CLIENTSECRET: $(dev-client-secret)
+          FLASHPIPE_ARTIFACT_ID: GroovyXMLTransformation
+          FLASHPIPE_ARTIFACT_NAME: "Groovy XML Transformation"
+          FLASHPIPE_PACKAGE_ID: FlashPipeDemo
+          FLASHPIPE_PACKAGE_NAME: "FlashPipe Demo"
+          FLASHPIPE_DIR_ARTIFACT: "$(Build.SourcesDirectory)/FlashPipe Demo/Groovy XML Transformation"
+      - bash: /usr/bin/flashpipe update artifact
         displayName: 'Update/Upload INVOIC02 to Invoice XML to design time'
         env:
-          HOST_TMN: $(dev-host-tmn)
-          HOST_OAUTH: $(dev-oauth-host)
-          OAUTH_CLIENTID: $(dev-client-id)
-          OAUTH_CLIENTSECRET: $(dev-client-secret)
-          IFLOW_ID: INVOIC02_to_Invoice_XML
-          IFLOW_NAME: "INVOIC02 to Invoice XML"
-          PACKAGE_ID: FlashPipeDemo
-          PACKAGE_NAME: "FlashPipe Demo"
-          GIT_SRC_DIR: "$(Build.SourcesDirectory)/FlashPipe Demo/INVOIC02_to_Invoice_XML"
+          FLASHPIPE_TMN_HOST: $(dev-host-tmn)
+          FLASHPIPE_OAUTH_HOST: $(dev-oauth-host)
+          FLASHPIPE_OAUTH_CLIENTID: $(dev-client-id)
+          FLASHPIPE_OAUTH_CLIENTSECRET: $(dev-client-secret)
+          FLASHPIPE_ARTIFACT_ID: INVOIC02_to_Invoice_XML
+          FLASHPIPE_ARTIFACT_NAME: "INVOIC02 to Invoice XML"
+          FLASHPIPE_PACKAGE_ID: FlashPipeDemo
+          FLASHPIPE_PACKAGE_NAME: "FlashPipe Demo"
+          FLASHPIPE_DIR_ARTIFACT: "$(Build.SourcesDirectory)/FlashPipe Demo/INVOIC02_to_Invoice_XML"
       # Deploy runtime
-      - bash: /usr/bin/deploy_runtime_artifact.sh
+      - bash: /usr/bin/flashpipe deploy
         displayName: 'Deploy IFlows to runtime'
         env:
-          HOST_TMN: $(dev-host-tmn)
-          HOST_OAUTH: $(dev-oauth-host)
-          OAUTH_CLIENTID: $(dev-client-id)
-          OAUTH_CLIENTSECRET: $(dev-client-secret)
-          IFLOW_ID: GroovyXMLTransformation,INVOIC02_to_Invoice_XML
+          FLASHPIPE_TMN_HOST: $(dev-host-tmn)
+          FLASHPIPE_OAUTH_HOST: $(dev-oauth-host)
+          FLASHPIPE_OAUTH_CLIENTID: $(dev-client-id)
+          FLASHPIPE_OAUTH_CLIENTSECRET: $(dev-client-secret)
+          FLASHPIPE_ARTIFACT_IDS: GroovyXMLTransformation,INVOIC02_to_Invoice_XML
       # Publish Pipeline artifact
       - publish: $(System.DefaultWorkingDirectory)
         artifact: GitRepo
   - deployment: deploy_qa
-    container: flashpipe-lite
+    container: flashpipe
     dependsOn: build
     environment: cpi_dev
     strategy:
@@ -78,43 +69,45 @@ jobs:
                 artifact: GitRepo
                 path: $(Build.SourcesDirectory)/
             # Upload/Update design time
-            - bash: /usr/bin/update_designtime_artifact.sh
+            - bash: /usr/bin/flashpipe update artifact
               displayName: 'Update/Upload Groovy XML Transformation to design time'
               env:
-                HOST_TMN: $(dev-host-tmn)
-                HOST_OAUTH: $(dev-oauth-host)
-                OAUTH_CLIENTID: $(dev-client-id)
-                OAUTH_CLIENTSECRET: $(dev-client-secret)
-                IFLOW_ID: GroovyXMLTransformation_QA
-                IFLOW_NAME: "Groovy XML Transformation QA"
-                PACKAGE_ID: FlashPipeDemoQA
-                PACKAGE_NAME: "FlashPipe Demo QA"
-                GIT_SRC_DIR: "$(Build.SourcesDirectory)/FlashPipe Demo/Groovy XML Transformation"
-                PARAM_FILE: "$(Build.SourcesDirectory)/FlashPipe Demo/Groovy XML Transformation/QA/parameters.prop"
-            - bash: /usr/bin/update_designtime_artifact.sh
+                FLASHPIPE_TMN_HOST: $(dev-host-tmn)
+                FLASHPIPE_OAUTH_HOST: $(dev-oauth-host)
+                FLASHPIPE_OAUTH_CLIENTID: $(dev-client-id)
+                FLASHPIPE_OAUTH_CLIENTSECRET: $(dev-client-secret)
+                FLASHPIPE_ARTIFACT_ID: GroovyXMLTransformation_QA
+                FLASHPIPE_ARTIFACT_NAME: "Groovy XML Transformation QA"
+                FLASHPIPE_PACKAGE_ID: FlashPipeDemoQA
+                FLASHPIPE_PACKAGE_NAME: "FlashPipe Demo QA"
+                FLASHPIPE_DIR_ARTIFACT: "$(Build.SourcesDirectory)/FlashPipe Demo/Groovy XML Transformation"
+                FLASHPIPE_FILE_PARAM: "$(Build.SourcesDirectory)/FlashPipe Demo/Groovy XML Transformation/QA/parameters.prop"
+                FLASHPIPE_FILE_MANIFEST: "$(Build.SourcesDirectory)/FlashPipe Demo/Groovy XML Transformation/QA/MANIFEST.MF"
+            - bash: /usr/bin/flashpipe update artifact
               displayName: 'Update/Upload INVOIC02 to Invoice XML to design time'
               env:
-                HOST_TMN: $(dev-host-tmn)
-                HOST_OAUTH: $(dev-oauth-host)
-                OAUTH_CLIENTID: $(dev-client-id)
-                OAUTH_CLIENTSECRET: $(dev-client-secret)
-                IFLOW_ID: INVOIC02_to_Invoice_XML_QA
-                IFLOW_NAME: "INVOIC02 to Invoice XML QA"
-                PACKAGE_ID: FlashPipeDemoQA
-                PACKAGE_NAME: "FlashPipe Demo QA"
-                GIT_SRC_DIR: "$(Build.SourcesDirectory)/FlashPipe Demo/INVOIC02_to_Invoice_XML"
-                PARAM_FILE: "$(Build.SourcesDirectory)/FlashPipe Demo/INVOIC02_to_Invoice_XML/QA/parameters.prop"
+                FLASHPIPE_TMN_HOST: $(dev-host-tmn)
+                FLASHPIPE_OAUTH_HOST: $(dev-oauth-host)
+                FLASHPIPE_OAUTH_CLIENTID: $(dev-client-id)
+                FLASHPIPE_OAUTH_CLIENTSECRET: $(dev-client-secret)
+                FLASHPIPE_ARTIFACT_ID: INVOIC02_to_Invoice_XML_QA
+                FLASHPIPE_ARTIFACT_NAME: "INVOIC02 to Invoice XML QA"
+                FLASHPIPE_PACKAGE_ID: FlashPipeDemoQA
+                FLASHPIPE_PACKAGE_NAME: "FlashPipe Demo QA"
+                FLASHPIPE_DIR_ARTIFACT: "$(Build.SourcesDirectory)/FlashPipe Demo/INVOIC02_to_Invoice_XML"
+                FLASHPIPE_FILE_PARAM: "$(Build.SourcesDirectory)/FlashPipe Demo/INVOIC02_to_Invoice_XML/QA/parameters.prop"
+                FLASHPIPE_FILE_MANIFEST: "$(Build.SourcesDirectory)/FlashPipe Demo/INVOIC02_to_Invoice_XML/QA/MANIFEST.MF"
             # Deploy runtime
-            - bash: /usr/bin/deploy_runtime_artifact.sh
+            - bash: /usr/bin/flashpipe deploy
               displayName: 'Deploy IFlows to runtime'
               env:
-                HOST_TMN: $(dev-host-tmn)
-                HOST_OAUTH: $(dev-oauth-host)
-                OAUTH_CLIENTID: $(dev-client-id)
-                OAUTH_CLIENTSECRET: $(dev-client-secret)
-                IFLOW_ID: GroovyXMLTransformation_QA,INVOIC02_to_Invoice_XML_QA
+                FLASHPIPE_TMN_HOST: $(dev-host-tmn)
+                FLASHPIPE_OAUTH_HOST: $(dev-oauth-host)
+                FLASHPIPE_OAUTH_CLIENTID: $(dev-client-id)
+                FLASHPIPE_OAUTH_CLIENTSECRET: $(dev-client-secret)
+                FLASHPIPE_ARTIFACT_IDS: GroovyXMLTransformation_QA,INVOIC02_to_Invoice_XML_QA
   - deployment: deploy_prod
-    container: flashpipe-lite
+    container: flashpipe
     dependsOn: deploy_qa
     environment: cpi_prod
     strategy:
@@ -127,38 +120,38 @@ jobs:
                 artifact: GitRepo
                 path: $(Build.SourcesDirectory)/
             # Upload/Update design time
-            - bash: /usr/bin/update_designtime_artifact.sh
+            - bash: /usr/bin/flashpipe update artifact
               displayName: 'Update/Upload Groovy XML Transformation to design time'
               env:
-                HOST_TMN: $(prod-host-tmn)
-                HOST_OAUTH: $(prod-oauth-host)
-                OAUTH_CLIENTID: $(prod-client-id)
-                OAUTH_CLIENTSECRET: $(prod-client-secret)
-                IFLOW_ID: GroovyXMLTransformation
-                IFLOW_NAME: "Groovy XML Transformation"
-                PACKAGE_ID: FlashPipeDemo
-                PACKAGE_NAME: "FlashPipe Demo"
-                GIT_SRC_DIR: "$(Build.SourcesDirectory)/FlashPipe Demo/Groovy XML Transformation"
-                PARAM_FILE: "$(Build.SourcesDirectory)/FlashPipe Demo/Groovy XML Transformation/PROD/parameters.prop"
-            - bash: /usr/bin/update_designtime_artifact.sh
+                FLASHPIPE_TMN_HOST: $(prod-host-tmn)
+                FLASHPIPE_OAUTH_HOST: $(prod-oauth-host)
+                FLASHPIPE_OAUTH_CLIENTID: $(prod-client-id)
+                FLASHPIPE_OAUTH_CLIENTSECRET: $(prod-client-secret)
+                FLASHPIPE_ARTIFACT_ID: GroovyXMLTransformation
+                FLASHPIPE_ARTIFACT_NAME: "Groovy XML Transformation"
+                FLASHPIPE_PACKAGE_ID: FlashPipeDemo
+                FLASHPIPE_PACKAGE_NAME: "FlashPipe Demo"
+                FLASHPIPE_DIR_ARTIFACT: "$(Build.SourcesDirectory)/FlashPipe Demo/Groovy XML Transformation"
+                FLASHPIPE_FILE_PARAM: "$(Build.SourcesDirectory)/FlashPipe Demo/Groovy XML Transformation/PROD/parameters.prop"
+            - bash: /usr/bin/flashpipe update artifact
               displayName: 'Update/Upload INVOIC02 to Invoice XML to design time'
               env:
-                HOST_TMN: $(prod-host-tmn)
-                HOST_OAUTH: $(prod-oauth-host)
-                OAUTH_CLIENTID: $(prod-client-id)
-                OAUTH_CLIENTSECRET: $(prod-client-secret)
-                IFLOW_ID: INVOIC02_to_Invoice_XML
-                IFLOW_NAME: "INVOIC02 to Invoice XML"
-                PACKAGE_ID: FlashPipeDemo
-                PACKAGE_NAME: "FlashPipe Demo"
-                GIT_SRC_DIR: "$(Build.SourcesDirectory)/FlashPipe Demo/INVOIC02_to_Invoice_XML"
-                PARAM_FILE: "$(Build.SourcesDirectory)/FlashPipe Demo/INVOIC02_to_Invoice_XML/PROD/parameters.prop"
+                FLASHPIPE_TMN_HOST: $(prod-host-tmn)
+                FLASHPIPE_OAUTH_HOST: $(prod-oauth-host)
+                FLASHPIPE_OAUTH_CLIENTID: $(prod-client-id)
+                FLASHPIPE_OAUTH_CLIENTSECRET: $(prod-client-secret)
+                FLASHPIPE_ARTIFACT_ID: INVOIC02_to_Invoice_XML
+                FLASHPIPE_ARTIFACT_NAME: "INVOIC02 to Invoice XML"
+                FLASHPIPE_PACKAGE_ID: FlashPipeDemo
+                FLASHPIPE_PACKAGE_NAME: "FlashPipe Demo"
+                FLASHPIPE_DIR_ARTIFACT: "$(Build.SourcesDirectory)/FlashPipe Demo/INVOIC02_to_Invoice_XML"
+                FLASHPIPE_FILE_PARAM: "$(Build.SourcesDirectory)/FlashPipe Demo/INVOIC02_to_Invoice_XML/PROD/parameters.prop"
             # Deploy runtime
-            - bash: /usr/bin/deploy_runtime_artifact.sh
+            - bash: /usr/bin/flashpipe deploy
               displayName: 'Deploy IFlows to runtime'
               env:
-                HOST_TMN: $(prod-host-tmn)
-                HOST_OAUTH: $(prod-oauth-host)
-                OAUTH_CLIENTID: $(prod-client-id)
-                OAUTH_CLIENTSECRET: $(prod-client-secret)
-                IFLOW_ID: GroovyXMLTransformation,INVOIC02_to_Invoice_XML
+                FLASHPIPE_TMN_HOST: $(prod-host-tmn)
+                FLASHPIPE_OAUTH_HOST: $(prod-oauth-host)
+                FLASHPIPE_OAUTH_CLIENTID: $(prod-client-id)
+                FLASHPIPE_OAUTH_CLIENTSECRET: $(prod-client-secret)
+                FLASHPIPE_ARTIFACT_IDS: GroovyXMLTransformation,INVOIC02_to_Invoice_XML
