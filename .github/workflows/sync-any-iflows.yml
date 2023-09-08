@@ -41,7 +41,7 @@ jobs:
         echo "FLASHPIPE_DIR_GIT_REPO=$GITHUB_WORKSPACE" >> $GITHUB_ENV
         echo "FLASHPIPE_DIR_ARTIFACTS=$GITHUB_WORKSPACE/${{ github.event.inputs.directory }}" >> $GITHUB_ENV
     - name: 'Sync Any IFlows'
-      run: /usr/bin/flashpipe sync
+      run: flashpipe sync
       shell: bash
       env:
         FLASHPIPE_PACKAGE_ID: ${{ github.event.inputs.packageId }}
