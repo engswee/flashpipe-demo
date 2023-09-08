@@ -18,7 +18,7 @@ jobs:
         run: |
           echo "FLASHPIPE_DIR_GIT_REPO=$GITHUB_WORKSPACE" >> $GITHUB_ENV
       - name: 'Take a snapshot'
-        run: /usr/bin/flashpipe snapshot
+        run: flashpipe snapshot
         shell: bash
       - name: Push changes
         run: git push
