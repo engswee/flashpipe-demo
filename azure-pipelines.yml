@@ -28,7 +28,7 @@ jobs:
     dependsOn: unit_test
     steps:
       # Upload/Update design time
-      - bash: /usr/bin/flashpipe update artifact
+      - bash: flashpipe update artifact
         displayName: 'Update/Upload Groovy XML Transformation to design time'
         env:
           FLASHPIPE_TMN_HOST: $(dev-host-tmn)
@@ -40,7 +40,7 @@ jobs:
           FLASHPIPE_PACKAGE_ID: FlashPipeDemo
           FLASHPIPE_PACKAGE_NAME: "FlashPipe Demo"
           FLASHPIPE_DIR_ARTIFACT: "$(Build.SourcesDirectory)/FlashPipe Demo/Groovy XML Transformation"
-      - bash: /usr/bin/flashpipe update artifact
+      - bash: flashpipe update artifact
         displayName: 'Update/Upload INVOIC02 to Invoice XML to design time'
         env:
           FLASHPIPE_TMN_HOST: $(dev-host-tmn)
@@ -53,7 +53,7 @@ jobs:
           FLASHPIPE_PACKAGE_NAME: "FlashPipe Demo"
           FLASHPIPE_DIR_ARTIFACT: "$(Build.SourcesDirectory)/FlashPipe Demo/INVOIC02_to_Invoice_XML"
       # Deploy runtime
-      - bash: /usr/bin/flashpipe deploy
+      - bash: flashpipe deploy
         displayName: 'Deploy IFlows to runtime'
         env:
           FLASHPIPE_TMN_HOST: $(dev-host-tmn)
@@ -78,7 +78,7 @@ jobs:
                 artifact: GitRepo
                 path: $(Build.SourcesDirectory)/
             # Upload/Update design time
-            - bash: /usr/bin/flashpipe update artifact
+            - bash: flashpipe update artifact
               displayName: 'Update/Upload Groovy XML Transformation to design time'
               env:
                 FLASHPIPE_TMN_HOST: $(dev-host-tmn)
@@ -92,7 +92,7 @@ jobs:
                 FLASHPIPE_DIR_ARTIFACT: "$(Build.SourcesDirectory)/FlashPipe Demo/Groovy XML Transformation"
                 FLASHPIPE_FILE_PARAM: "$(Build.SourcesDirectory)/FlashPipe Demo/Groovy XML Transformation/QA/parameters.prop"
                 FLASHPIPE_FILE_MANIFEST: "$(Build.SourcesDirectory)/FlashPipe Demo/Groovy XML Transformation/QA/MANIFEST.MF"
-            - bash: /usr/bin/flashpipe update artifact
+            - bash: flashpipe update artifact
               displayName: 'Update/Upload INVOIC02 to Invoice XML to design time'
               env:
                 FLASHPIPE_TMN_HOST: $(dev-host-tmn)
@@ -107,7 +107,7 @@ jobs:
                 FLASHPIPE_FILE_PARAM: "$(Build.SourcesDirectory)/FlashPipe Demo/INVOIC02_to_Invoice_XML/QA/parameters.prop"
                 FLASHPIPE_FILE_MANIFEST: "$(Build.SourcesDirectory)/FlashPipe Demo/INVOIC02_to_Invoice_XML/QA/MANIFEST.MF"
             # Deploy runtime
-            - bash: /usr/bin/flashpipe deploy
+            - bash: flashpipe deploy
               displayName: 'Deploy IFlows to runtime'
               env:
                 FLASHPIPE_TMN_HOST: $(dev-host-tmn)
@@ -129,7 +129,7 @@ jobs:
                 artifact: GitRepo
                 path: $(Build.SourcesDirectory)/
             # Upload/Update design time
-            - bash: /usr/bin/flashpipe update artifact
+            - bash: flashpipe update artifact
               displayName: 'Update/Upload Groovy XML Transformation to design time'
               env:
                 FLASHPIPE_TMN_HOST: $(prod-host-tmn)
@@ -142,7 +142,7 @@ jobs:
                 FLASHPIPE_PACKAGE_NAME: "FlashPipe Demo"
                 FLASHPIPE_DIR_ARTIFACT: "$(Build.SourcesDirectory)/FlashPipe Demo/Groovy XML Transformation"
                 FLASHPIPE_FILE_PARAM: "$(Build.SourcesDirectory)/FlashPipe Demo/Groovy XML Transformation/PROD/parameters.prop"
-            - bash: /usr/bin/flashpipe update artifact
+            - bash: flashpipe update artifact
               displayName: 'Update/Upload INVOIC02 to Invoice XML to design time'
               env:
                 FLASHPIPE_TMN_HOST: $(prod-host-tmn)
@@ -156,7 +156,7 @@ jobs:
                 FLASHPIPE_DIR_ARTIFACT: "$(Build.SourcesDirectory)/FlashPipe Demo/INVOIC02_to_Invoice_XML"
                 FLASHPIPE_FILE_PARAM: "$(Build.SourcesDirectory)/FlashPipe Demo/INVOIC02_to_Invoice_XML/PROD/parameters.prop"
             # Deploy runtime
-            - bash: /usr/bin/flashpipe deploy
+            - bash: flashpipe deploy
               displayName: 'Deploy IFlows to runtime'
               env:
                 FLASHPIPE_TMN_HOST: $(prod-host-tmn)
