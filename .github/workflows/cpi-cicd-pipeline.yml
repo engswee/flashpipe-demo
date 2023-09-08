@@ -47,7 +47,7 @@ jobs:
       - run: |
           echo "FLASHPIPE_DIR_ARTIFACT=$GITHUB_WORKSPACE/FlashPipe Demo/Sample_Message_Mapping" >> $GITHUB_ENV
       # Upload/Update design time artifact
-      - name: 'Update/Upload Groovy XML Transformation to design time'
+      - name: 'Update/Upload Sample_Message_Mapping to design time'
         run: flashpipe update artifact
         shell: bash
         env:
@@ -60,7 +60,7 @@ jobs:
       - run: |
           echo "FLASHPIPE_DIR_ARTIFACT=$GITHUB_WORKSPACE/FlashPipe Demo/Sample_Script_Collection" >> $GITHUB_ENV
       # Upload/Update design time artifact
-      - name: 'Update/Upload Groovy XML Transformation to design time'
+      - name: 'Update/Upload Sample_Script_Collection to design time'
         run: flashpipe update artifact
         shell: bash
         env:
@@ -73,7 +73,7 @@ jobs:
       - run: |
           echo "FLASHPIPE_DIR_ARTIFACT=$GITHUB_WORKSPACE/FlashPipe Demo/Sample_Value_Mapping" >> $GITHUB_ENV
       # Upload/Update design time artifact
-      - name: 'Update/Upload Groovy XML Transformation to design time'
+      - name: 'Update/Upload Sample_Value_Mapping to design time'
         run: flashpipe update artifact
         shell: bash
         env:
@@ -95,19 +95,19 @@ jobs:
         shell: bash
         env:
           FLASHPIPE_ARTIFACT_IDS: GroovyXMLTransformation
-      - name: 'Deploy Groovy XML Transformation to runtime'
+      - name: 'Deploy Sample_Message_Mapping to runtime'
         run: flashpipe deploy
         shell: bash
         env:
           FLASHPIPE_ARTIFACT_IDS: Sample_Message_Mapping
           FLASHPIPE_ARTIFACT_TYPE: MessageMapping
-      - name: 'Deploy Groovy XML Transformation to runtime'
+      - name: 'Deploy Sample_Script_Collection to runtime'
         run: flashpipe deploy
         shell: bash
         env:
           FLASHPIPE_ARTIFACT_IDS: Sample_Script_Collection
           FLASHPIPE_ARTIFACT_TYPE: ScriptCollection
-      - name: 'Deploy Groovy XML Transformation to runtime'
+      - name: 'Deploy Sample_Value_Mapping to runtime'
         run: flashpipe deploy
         shell: bash
         env:
