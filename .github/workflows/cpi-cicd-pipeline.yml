@@ -36,7 +36,7 @@ jobs:
           echo "FLASHPIPE_DIR_ARTIFACT=$GITHUB_WORKSPACE/FlashPipe Demo/Groovy XML Transformation" >> $GITHUB_ENV
       # Upload/Update design time artifact
       - name: 'Update/Upload Groovy XML Transformation to design time'
-        run: /usr/bin/flashpipe update artifact
+        run: flashpipe update artifact
         shell: bash
         env:
           FLASHPIPE_ARTIFACT_ID: GroovyXMLTransformation
@@ -48,7 +48,7 @@ jobs:
           echo "FLASHPIPE_DIR_ARTIFACT=$GITHUB_WORKSPACE/FlashPipe Demo/Sample_Message_Mapping" >> $GITHUB_ENV
       # Upload/Update design time artifact
       - name: 'Update/Upload Groovy XML Transformation to design time'
-        run: /usr/bin/flashpipe update artifact
+        run: flashpipe update artifact
         shell: bash
         env:
           FLASHPIPE_ARTIFACT_ID: Sample_Message_Mapping
@@ -61,7 +61,7 @@ jobs:
           echo "FLASHPIPE_DIR_ARTIFACT=$GITHUB_WORKSPACE/FlashPipe Demo/Sample_Script_Collection" >> $GITHUB_ENV
       # Upload/Update design time artifact
       - name: 'Update/Upload Groovy XML Transformation to design time'
-        run: /usr/bin/flashpipe update artifact
+        run: flashpipe update artifact
         shell: bash
         env:
           FLASHPIPE_ARTIFACT_ID: Sample_Script_Collection
@@ -74,7 +74,7 @@ jobs:
           echo "FLASHPIPE_DIR_ARTIFACT=$GITHUB_WORKSPACE/FlashPipe Demo/Sample_Value_Mapping" >> $GITHUB_ENV
       # Upload/Update design time artifact
       - name: 'Update/Upload Groovy XML Transformation to design time'
-        run: /usr/bin/flashpipe update artifact
+        run: flashpipe update artifact
         shell: bash
         env:
           FLASHPIPE_ARTIFACT_ID: Sample_Value_Mapping
@@ -91,24 +91,24 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: 'Deploy Groovy XML Transformation to runtime'
-        run: /usr/bin/flashpipe deploy
+        run: flashpipe deploy
         shell: bash
         env:
           FLASHPIPE_ARTIFACT_IDS: GroovyXMLTransformation
       - name: 'Deploy Groovy XML Transformation to runtime'
-        run: /usr/bin/flashpipe deploy
+        run: flashpipe deploy
         shell: bash
         env:
           FLASHPIPE_ARTIFACT_IDS: Sample_Message_Mapping
           FLASHPIPE_ARTIFACT_TYPE: MessageMapping
       - name: 'Deploy Groovy XML Transformation to runtime'
-        run: /usr/bin/flashpipe deploy
+        run: flashpipe deploy
         shell: bash
         env:
           FLASHPIPE_ARTIFACT_IDS: Sample_Script_Collection
           FLASHPIPE_ARTIFACT_TYPE: ScriptCollection
       - name: 'Deploy Groovy XML Transformation to runtime'
-        run: /usr/bin/flashpipe deploy
+        run: flashpipe deploy
         shell: bash
         env:
           FLASHPIPE_ARTIFACT_IDS: Sample_Value_Mapping
