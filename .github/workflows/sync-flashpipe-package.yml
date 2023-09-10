@@ -15,11 +15,7 @@ jobs:
       FLASHPIPE_OAUTH_CLIENTID: ${{ secrets.DEV_CLIENT_ID }}
       FLASHPIPE_OAUTH_CLIENTSECRET: ${{ secrets.DEV_CLIENT_SECRET }}  
     steps:
-      - uses: actions/checkout@v3
-#      - name: 'Set directories for sync'
-#        run: |
-#          echo "FLASHPIPE_DIR_GIT_REPO=$GITHUB_WORKSPACE" >> $GITHUB_ENV
-#          echo "FLASHPIPE_DIR_ARTIFACTS=$GITHUB_WORKSPACE/FlashPipe Demo" >> $GITHUB_ENV
+      - uses: actions/checkout@v4
       - name: 'Sync FlashPipeDemo IFlows'
         run: flashpipe sync
         shell: bash

@@ -17,10 +17,19 @@ on:
         required: false
       draft:
         description: 'Draft handling (optional) - SKIP (default value if empty), ADD, ERROR'
+        type: choice
+        options:
+          - SKIP
+          - ADD
+          - ERROR
         required: false
       dirNaming:
         description: 'Naming convention for IFlow directories (optional) - ID (default value if empty), NAME'
         required: false
+        type: choice
+        options:
+          - ID
+          - NAME
       message:
         description: 'Commit message (optional)'
         required: false
@@ -35,16 +44,14 @@ jobs:
       FLASHPIPE_OAUTH_CLIENTID: ${{ secrets.DEV_CLIENT_ID }}
       FLASHPIPE_OAUTH_CLIENTSECRET: ${{ secrets.DEV_CLIENT_SECRET }}     
     steps:
-    - uses: actions/checkout@v3
-    - name: 'Set directories for sync'
-      run: |
-        echo "FLASHPIPE_DIR_GIT_REPO=$GITHUB_WORKSPACE" >> $GITHUB_ENV
-        echo "FLASHPIPE_DIR_ARTIFACTS=$GITHUB_WORKSPACE/${{ github.event.inputs.directory }}" >> $GITHUB_ENV
+    - uses: actions/checkout@v4
     - name: 'Sync Any IFlows'
       run: flashpipe sync
       shell: bash
       env:
         FLASHPIPE_PACKAGE_ID: ${{ github.event.inputs.packageId }}
+        FLASHPIPE_DIR_GIT_REPO: ${{ github.workspace }}
+        FLASHPIPE_DIR_ARTIFACTS: ${{ github.workspace }}/${{ github.event.inputs.directory }}
         FLASHPIPE_IDS_INCLUDE: ${{ github.event.inputs.includedIds }}
         FLASHPIPE_IDS_EXCLUDE: ${{ github.event.inputs.excludedIds }}
         FLASHPIPE_DRAFT_HANDLING: ${{ github.event.inputs.draft }}
