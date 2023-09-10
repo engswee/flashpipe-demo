@@ -16,15 +16,17 @@ jobs:
       FLASHPIPE_OAUTH_CLIENTSECRET: ${{ secrets.DEV_CLIENT_SECRET }}  
     steps:
       - uses: actions/checkout@v3
-      - name: 'Set directories for sync'
-        run: |
-          echo "FLASHPIPE_DIR_GIT_REPO=$GITHUB_WORKSPACE" >> $GITHUB_ENV
-          echo "FLASHPIPE_DIR_ARTIFACTS=$GITHUB_WORKSPACE/FlashPipe Demo" >> $GITHUB_ENV
+#      - name: 'Set directories for sync'
+#        run: |
+#          echo "FLASHPIPE_DIR_GIT_REPO=$GITHUB_WORKSPACE" >> $GITHUB_ENV
+#          echo "FLASHPIPE_DIR_ARTIFACTS=$GITHUB_WORKSPACE/FlashPipe Demo" >> $GITHUB_ENV
       - name: 'Sync FlashPipeDemo IFlows'
         run: flashpipe sync
         shell: bash
         env:
           FLASHPIPE_PACKAGE_ID: FlashPipeDemo
+          FLASHPIPE_DIR_GIT_REPO: ${{ github.workspace }}
+          FLASHPIPE_DIR_ARTIFACTS: ${{ github.workspace }}/FlashPipe Demo
           FLASHPIPE_GIT_COMMIT_MSG: 'Update FlashPipeDemo package contents'
       - name: Push changes
         run: git push
