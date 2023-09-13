@@ -6,11 +6,6 @@ on:
     branches:
       - github-actions
 
-env:
-  FLASHPIPE_TMN_HOST: equaliseit.it-cpi023.cfapps.eu20-001.hana.ondemand.com
-  FLASHPIPE_OAUTH_HOST: equaliseit.authentication.eu20.hana.ondemand.com
-  FLASHPIPE_OAUTH_CLIENTID: ${{ secrets.DEV_CLIENT_ID }}
-  FLASHPIPE_OAUTH_CLIENTSECRET: ${{ secrets.DEV_CLIENT_SECRET }}
 jobs:
 # Unit test
   unit_test:
@@ -23,6 +18,7 @@ jobs:
           distribution: 'temurin'
       - name: 'Local unit test with Maven'
         run: mvn clean test
+
 # Update designtime
   update:
     runs-on: ubuntu-latest
@@ -31,49 +27,60 @@ jobs:
       image: engswee/flashpipe:3.0.0
     steps:
       - uses: actions/checkout@v4
-      # Upload/Update design time artifact
+
       - name: 'Update/Upload Groovy XML Transformation to design time'
-        run: flashpipe update artifact
-        shell: bash
-        env:
-          FLASHPIPE_ARTIFACT_ID: GroovyXMLTransformation
-          FLASHPIPE_ARTIFACT_NAME: "Groovy XML Transformation"
-          FLASHPIPE_PACKAGE_ID: FlashPipeDemo
-          FLASHPIPE_PACKAGE_NAME: "FlashPipe Demo"
-          FLASHPIPE_DIR_ARTIFACT: ${{ github.workspace }}/FlashPipe Demo/Groovy XML Transformation
-      # Upload/Update design time artifact
+        uses: engswee/flashpipe-action/update/artifact@v1
+        with:
+          tmn-host: equaliseit.it-cpi023.cfapps.eu20-001.hana.ondemand.com
+          oauth-host: equaliseit.authentication.eu20.hana.ondemand.com
+          oauth-clientid: ${{ secrets.DEV_CLIENT_ID }}
+          oauth-clientsecret: ${{ secrets.DEV_CLIENT_SECRET }}
+          artifact-id: GroovyXMLTransformation
+          artifact-name: Groovy XML Transformation
+          package-id: FlashPipeDemo
+          package-name: FlashPipe Demo
+          dir-artifact-relative: FlashPipe Demo/Groovy XML Transformation
       - name: 'Update/Upload Sample_Message_Mapping to design time'
-        run: flashpipe update artifact
-        shell: bash
-        env:
-          FLASHPIPE_ARTIFACT_ID: Sample_Message_Mapping
-          FLASHPIPE_ARTIFACT_NAME: "Sample Message Mapping"
-          FLASHPIPE_PACKAGE_ID: FlashPipeDemo
-          FLASHPIPE_PACKAGE_NAME: "FlashPipe Demo"
-          FLASHPIPE_ARTIFACT_TYPE: MessageMapping
-          FLASHPIPE_DIR_ARTIFACT: ${{ github.workspace }}/FlashPipe Demo/Sample_Message_Mapping
-      # Upload/Update design time artifact
+        uses: engswee/flashpipe-action/update/artifact@v1
+        with:
+          tmn-host: equaliseit.it-cpi023.cfapps.eu20-001.hana.ondemand.com
+          oauth-host: equaliseit.authentication.eu20.hana.ondemand.com
+          oauth-clientid: ${{ secrets.DEV_CLIENT_ID }}
+          oauth-clientsecret: ${{ secrets.DEV_CLIENT_SECRET }}
+          artifact-id: Sample_Message_Mapping
+          artifact-name: Sample Message Mapping
+          package-id: FlashPipeDemo
+          package-name: FlashPipe Demo
+          dir-artifact-relative: FlashPipe Demo/Sample_Message_Mapping
+          artifact-type: MessageMapping
+
       - name: 'Update/Upload Sample_Script_Collection to design time'
-        run: flashpipe update artifact
-        shell: bash
-        env:
-          FLASHPIPE_ARTIFACT_ID: Sample_Script_Collection
-          FLASHPIPE_ARTIFACT_NAME: "Sample Script Collection"
-          FLASHPIPE_PACKAGE_ID: FlashPipeDemo
-          FLASHPIPE_PACKAGE_NAME: "FlashPipe Demo"
-          FLASHPIPE_ARTIFACT_TYPE: ScriptCollection
-          FLASHPIPE_DIR_ARTIFACT: ${{ github.workspace }}/FlashPipe Demo/Sample_Script_Collection
-      # Upload/Update design time artifact
+        uses: engswee/flashpipe-action/update/artifact@v1
+        with:
+          tmn-host: equaliseit.it-cpi023.cfapps.eu20-001.hana.ondemand.com
+          oauth-host: equaliseit.authentication.eu20.hana.ondemand.com
+          oauth-clientid: ${{ secrets.DEV_CLIENT_ID }}
+          oauth-clientsecret: ${{ secrets.DEV_CLIENT_SECRET }}
+          artifact-id: Sample_Script_Collection
+          artifact-name: Sample Script Collection
+          package-id: FlashPipeDemo
+          package-name: FlashPipe Demo
+          dir-artifact-relative: FlashPipe Demo/Sample_Script_Collection
+          artifact-type: ScriptCollection
+
       - name: 'Update/Upload Sample_Value_Mapping to design time'
-        run: flashpipe update artifact
-        shell: bash
-        env:
-          FLASHPIPE_ARTIFACT_ID: Sample_Value_Mapping
-          FLASHPIPE_ARTIFACT_NAME: "Sample Value Mapping"
-          FLASHPIPE_PACKAGE_ID: FlashPipeDemo
-          FLASHPIPE_PACKAGE_NAME: "FlashPipe Demo"
-          FLASHPIPE_ARTIFACT_TYPE: ValueMapping
-          FLASHPIPE_DIR_ARTIFACT: ${{ github.workspace }}/FlashPipe Demo/Sample_Value_Mapping
+        uses: engswee/flashpipe-action/update/artifact@v1
+        with:
+          tmn-host: equaliseit.it-cpi023.cfapps.eu20-001.hana.ondemand.com
+          oauth-host: equaliseit.authentication.eu20.hana.ondemand.com
+          oauth-clientid: ${{ secrets.DEV_CLIENT_ID }}
+          oauth-clientsecret: ${{ secrets.DEV_CLIENT_SECRET }}
+          artifact-id: Sample_Value_Mapping
+          artifact-name: Sample Value Mapping
+          package-id: FlashPipeDemo
+          package-name: FlashPipe Demo
+          dir-artifact-relative: FlashPipe Demo/Sample_Value_Mapping
+          artifact-type: ValueMapping
 
   # Deploy to runtime
   deploy:
@@ -83,26 +90,42 @@ jobs:
       image: engswee/flashpipe:3.0.0
     steps:
       - uses: actions/checkout@v4
+
       - name: 'Deploy Groovy XML Transformation to runtime'
-        run: flashpipe deploy
-        shell: bash
-        env:
-          FLASHPIPE_ARTIFACT_IDS: GroovyXMLTransformation
+        uses: engswee/flashpipe-action/deploy@v1
+        with:
+          tmn-host: equaliseit.it-cpi023.cfapps.eu20-001.hana.ondemand.com
+          oauth-host: equaliseit.authentication.eu20.hana.ondemand.com
+          oauth-clientid: ${{ secrets.DEV_CLIENT_ID }}
+          oauth-clientsecret: ${{ secrets.DEV_CLIENT_SECRET }}
+          artifact-ids: GroovyXMLTransformation
+
       - name: 'Deploy Sample_Message_Mapping to runtime'
-        run: flashpipe deploy
-        shell: bash
-        env:
-          FLASHPIPE_ARTIFACT_IDS: Sample_Message_Mapping
-          FLASHPIPE_ARTIFACT_TYPE: MessageMapping
+        uses: engswee/flashpipe-action/deploy@v1
+        with:
+          tmn-host: equaliseit.it-cpi023.cfapps.eu20-001.hana.ondemand.com
+          oauth-host: equaliseit.authentication.eu20.hana.ondemand.com
+          oauth-clientid: ${{ secrets.DEV_CLIENT_ID }}
+          oauth-clientsecret: ${{ secrets.DEV_CLIENT_SECRET }}
+          artifact-ids: Sample_Message_Mapping
+          artifact-type: MessageMapping
+
       - name: 'Deploy Sample_Script_Collection to runtime'
-        run: flashpipe deploy
-        shell: bash
-        env:
-          FLASHPIPE_ARTIFACT_IDS: Sample_Script_Collection
-          FLASHPIPE_ARTIFACT_TYPE: ScriptCollection
+        uses: engswee/flashpipe-action/deploy@v1
+        with:
+          tmn-host: equaliseit.it-cpi023.cfapps.eu20-001.hana.ondemand.com
+          oauth-host: equaliseit.authentication.eu20.hana.ondemand.com
+          oauth-clientid: ${{ secrets.DEV_CLIENT_ID }}
+          oauth-clientsecret: ${{ secrets.DEV_CLIENT_SECRET }}
+          artifact-ids: Sample_Script_Collection
+          artifact-type: ScriptCollection
+
       - name: 'Deploy Sample_Value_Mapping to runtime'
-        run: flashpipe deploy
-        shell: bash
-        env:
-          FLASHPIPE_ARTIFACT_IDS: Sample_Value_Mapping
-          FLASHPIPE_ARTIFACT_TYPE: ValueMapping
+        uses: engswee/flashpipe-action/deploy@v1
+        with:
+          tmn-host: equaliseit.it-cpi023.cfapps.eu20-001.hana.ondemand.com
+          oauth-host: equaliseit.authentication.eu20.hana.ondemand.com
+          oauth-clientid: ${{ secrets.DEV_CLIENT_ID }}
+          oauth-clientsecret: ${{ secrets.DEV_CLIENT_SECRET }}
+          artifact-ids: Sample_Value_Mapping
+          artifact-type: ValueMapping
