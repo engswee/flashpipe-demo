@@ -7,21 +7,14 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: engswee/flashpipe:3.0.0
-    env:
-      FLASHPIPE_TMN_HOST: equaliseit.it-cpi023.cfapps.eu20-001.hana.ondemand.com
-      FLASHPIPE_OAUTH_HOST: equaliseit.authentication.eu20.hana.ondemand.com
-      FLASHPIPE_OAUTH_CLIENTID: ${{ secrets.DEV_CLIENT_ID }}
-      FLASHPIPE_OAUTH_CLIENTSECRET: ${{ secrets.DEV_CLIENT_SECRET }} 
+
     steps:
-      - uses: actions/checkout@v3
-      - name: 'Set FLASHPIPE_DIR_GIT_REPO for snapshot'
-        run: |
-          echo "FLASHPIPE_DIR_GIT_REPO=$GITHUB_WORKSPACE" >> $GITHUB_ENV
+      - uses: actions/checkout@v4
+
       - name: 'Take a snapshot'
-        run: flashpipe snapshot
-        shell: bash
-      - name: Push changes
-        run: git push
-        shell: bash
-        env:
-          HOME: /root
+        uses: engswee/flashpipe-action/snapshot@v1
+        with:
+          tmn-host: equaliseit.it-cpi023.cfapps.eu20-001.hana.ondemand.com
+          oauth-host: equaliseit.authentication.eu20.hana.ondemand.com
+          oauth-clientid: ${{ secrets.DEV_CLIENT_ID }}
+          oauth-clientsecret: ${{ secrets.DEV_CLIENT_SECRET }}
