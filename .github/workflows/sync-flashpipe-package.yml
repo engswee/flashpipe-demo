@@ -9,23 +9,17 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: engswee/flashpipe:3.0.0
-    env:
-      FLASHPIPE_TMN_HOST: equaliseit.it-cpi023.cfapps.eu20-001.hana.ondemand.com
-      FLASHPIPE_OAUTH_HOST: equaliseit.authentication.eu20.hana.ondemand.com
-      FLASHPIPE_OAUTH_CLIENTID: ${{ secrets.DEV_CLIENT_ID }}
-      FLASHPIPE_OAUTH_CLIENTSECRET: ${{ secrets.DEV_CLIENT_SECRET }}  
+
     steps:
       - uses: actions/checkout@v4
+
       - name: 'Sync FlashPipeDemo IFlows'
-        run: flashpipe sync
-        shell: bash
-        env:
-          FLASHPIPE_PACKAGE_ID: FlashPipeDemo
-          FLASHPIPE_DIR_GIT_REPO: ${{ github.workspace }}
-          FLASHPIPE_DIR_ARTIFACTS: ${{ github.workspace }}/FlashPipe Demo
-          FLASHPIPE_GIT_COMMIT_MSG: 'Update FlashPipeDemo package contents'
-      - name: Push changes
-        run: git push
-        shell: bash
-        env:
-          HOME: /root
+        uses: engswee/flashpipe-action/sync@v1
+        with:
+          tmn-host: equaliseit.it-cpi023.cfapps.eu20-001.hana.ondemand.com
+          oauth-host: equaliseit.authentication.eu20.hana.ondemand.com
+          oauth-clientid: ${{ secrets.DEV_CLIENT_ID }}
+          oauth-clientsecret: ${{ secrets.DEV_CLIENT_SECRET }}
+          package-id: FlashPipeDemo
+          dir-artifacts-relative: FlashPipe Demo
+          git-commit-msg: Update FlashPipeDemo package contents

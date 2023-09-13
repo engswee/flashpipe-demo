@@ -16,7 +16,7 @@ on:
         description: 'Excluded Ids (optional)'
         required: false
       draft:
-        description: 'Draft handling (optional) - SKIP (default value if empty), ADD, ERROR'
+        description: 'Draft handling'
         type: choice
         options:
           - SKIP
@@ -24,12 +24,16 @@ on:
           - ERROR
         required: false
       dirNaming:
-        description: 'Naming convention for IFlow directories (optional) - ID (default value if empty), NAME'
+        description: 'Naming convention for IFlow directories'
         required: false
         type: choice
         options:
           - ID
           - NAME
+      syncPackageDetails:
+        description: "Sync package details"
+        type: boolean
+        required: false
       message:
         description: 'Commit message (optional)'
         required: false
@@ -38,27 +42,22 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: engswee/flashpipe:3.0.0
-    env:
-      FLASHPIPE_TMN_HOST: equaliseit.it-cpi023.cfapps.eu20-001.hana.ondemand.com
-      FLASHPIPE_OAUTH_HOST: equaliseit.authentication.eu20.hana.ondemand.com
-      FLASHPIPE_OAUTH_CLIENTID: ${{ secrets.DEV_CLIENT_ID }}
-      FLASHPIPE_OAUTH_CLIENTSECRET: ${{ secrets.DEV_CLIENT_SECRET }}     
+
     steps:
     - uses: actions/checkout@v4
+
     - name: 'Sync Any IFlows'
-      run: flashpipe sync
-      shell: bash
-      env:
-        FLASHPIPE_PACKAGE_ID: ${{ github.event.inputs.packageId }}
-        FLASHPIPE_DIR_GIT_REPO: ${{ github.workspace }}
-        FLASHPIPE_DIR_ARTIFACTS: ${{ github.workspace }}/${{ github.event.inputs.directory }}
-        FLASHPIPE_IDS_INCLUDE: ${{ github.event.inputs.includedIds }}
-        FLASHPIPE_IDS_EXCLUDE: ${{ github.event.inputs.excludedIds }}
-        FLASHPIPE_DRAFT_HANDLING: ${{ github.event.inputs.draft }}
-        FLASHPIPE_DIR_NAMING_TYPE: ${{ github.event.inputs.dirNaming }}
-        FLASHPIPE_GIT_COMMIT_MSG: ${{ github.event.inputs.message }}
-    - name: Push changes
-      run: git push
-      shell: bash
-      env:
-        HOME: /root
+      uses: engswee/flashpipe-action/sync@v1
+      with:
+        tmn-host: equaliseit.it-cpi023.cfapps.eu20-001.hana.ondemand.com
+        oauth-host: equaliseit.authentication.eu20.hana.ondemand.com
+        oauth-clientid: ${{ secrets.DEV_CLIENT_ID }}
+        oauth-clientsecret: ${{ secrets.DEV_CLIENT_SECRET }}
+        package-id: ${{ github.event.inputs.packageId }}
+        dir-artifacts-relative: ${{ github.event.inputs.directory }}
+        dir-naming-type: ${{ github.event.inputs.dirNaming }}
+        draft-handling: ${{ github.event.inputs.draft }}
+        ids-include: ${{ github.event.inputs.includedIds }}
+        ids-exclude: ${{ github.event.inputs.excludedIds }}
+        git-commit-msg: ${{ github.event.inputs.message }}
+        sync-package-details: ${{ github.event.inputs.syncPackageDetails }}
