@@ -1,0 +1,32 @@
+name: Sync FlashPipe Demo Package IFlows to Tenant
+on:
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    container:
+      image: engswee/flashpipe:3.1.0
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 'Sync package to remote'
+        uses: engswee/flashpipe-action/update/package@main
+        with:
+          tmn-host: equaliseit.it-cpi023.cfapps.eu20-001.hana.ondemand.com
+          oauth-host: equaliseit.authentication.eu20.hana.ondemand.com
+          oauth-clientid: ${{ secrets.DEV_CLIENT_ID }}
+          oauth-clientsecret: ${{ secrets.DEV_CLIENT_SECRET }}
+          package-file-relative: FlashPipe Demo/FlashPipeDemo.json
+
+      - name: 'Sync FlashPipeDemo IFlows'
+        uses: engswee/flashpipe-action/sync@v1
+        with:
+          tmn-host: equaliseit.it-cpi023.cfapps.eu20-001.hana.ondemand.com
+          oauth-host: equaliseit.authentication.eu20.hana.ondemand.com
+          oauth-clientid: ${{ secrets.DEV_CLIENT_ID }}
+          oauth-clientsecret: ${{ secrets.DEV_CLIENT_SECRET }}
+          package-id: FlashPipeDemo
+          target: remote
+          dir-artifacts-relative: FlashPipe Demo
