@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: 'Sync package to remote'
-        uses: engswee/flashpipe-action/update/package@main
+        uses: engswee/flashpipe-action/update/package@v1
         with:
           tmn-host: equaliseit.it-cpi023.cfapps.eu20-001.hana.ondemand.com
           oauth-host: equaliseit.authentication.eu20.hana.ondemand.com
