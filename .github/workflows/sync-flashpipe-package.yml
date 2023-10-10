@@ -1,4 +1,4 @@
-name: Sync FlashPipe Demo Package IFlows from Tenant
+name: Sync FlashPipe Demo Package artifacts from Tenant
 on:
   workflow_dispatch:
   schedule:
@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: 'Sync FlashPipeDemo IFlows'
+      - name: 'Sync FlashPipeDemo artifacts'
         uses: engswee/flashpipe-action/sync@v1
         with:
           tmn-host: equaliseit.it-cpi023.cfapps.eu20-001.hana.ondemand.com
