@@ -24,7 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: unit_test
     container:
-      image: engswee/flashpipe:3.0.0
+      image: engswee/flashpipe:latest
     steps:
       - uses: actions/checkout@v4
 
@@ -87,7 +87,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: update
     container:
-      image: engswee/flashpipe:3.0.0
+      image: engswee/flashpipe:latest
     steps:
       - uses: actions/checkout@v4
 
