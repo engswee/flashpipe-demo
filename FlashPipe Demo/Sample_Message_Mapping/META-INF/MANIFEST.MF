@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Provide-Capability: messagemapping.Sample_Message_Mapping;version:Vers
  ion="1.0.0"
-Bundle-SymbolicName: Sample_Message_Mapping
+Bundle-SymbolicName: Sample_Message_Mapping; singleton:=true
 Bundle-Name: Sample Message Mapping
 Bundle-Version: 1.0.1
 Bundle-ManifestVersion: 2
