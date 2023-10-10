@@ -1,4 +1,4 @@
-name: Sync Any IFlows from tenant
+name: Sync Any Artifact from tenant
 
 on:
   workflow_dispatch:
@@ -24,7 +24,7 @@ on:
           - ERROR
         required: false
       dirNaming:
-        description: 'Naming convention for IFlow directories'
+        description: 'Naming convention for artifact directories'
         required: false
         type: choice
         options:
@@ -41,12 +41,12 @@ jobs:
   sync:
     runs-on: ubuntu-latest
     container:
-      image: engswee/flashpipe:3.0.0
+      image: engswee/flashpipe:latest
 
     steps:
     - uses: actions/checkout@v4
 
-    - name: 'Sync Any IFlows'
+    - name: 'Sync any artifact'
       uses: engswee/flashpipe-action/sync@v1
       with:
         tmn-host: equaliseit.it-cpi023.cfapps.eu20-001.hana.ondemand.com
