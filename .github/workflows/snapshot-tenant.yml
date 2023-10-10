@@ -12,7 +12,7 @@ jobs:
   take_snapshot:
     runs-on: ubuntu-latest
     container:
-      image: engswee/flashpipe:3.0.0
+      image: engswee/flashpipe:latest
 
     steps:
       - uses: actions/checkout@v4
