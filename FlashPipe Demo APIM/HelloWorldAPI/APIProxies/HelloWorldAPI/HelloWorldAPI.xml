@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<APIProxy xmlns="http://www.sap.com/apimgmt">
+    <name>HelloWorldAPI</name>
+    <title>HelloWorldAPI</title>
+    <isVersioned>false</isVersioned>
+    <service_code>REST</service_code>
+    
+    <APIState>Active</APIState>
+    <releaseMetadata>{"reason":"","date":0,"changed_at":1706183892243,"changed_by":"engswee@equaliseit.com"}</releaseMetadata>
+    <life_cycle>
+        <changed_by>engswee@equaliseit.com</changed_by>
+        <created_by>engswee@equaliseit.com</created_by>
+    </life_cycle>
+    <proxyEndPoints>
+        <proxyEndPoint>
+            <proxyEndPointName>default</proxyEndPointName>
+            <apiResourceName>SWAGGER_JSON</apiResourceName>
+        </proxyEndPoint>
+    </proxyEndPoints>
+    <targetEndPoints>
+        <targetEndPoint>default</targetEndPoint>
+    </targetEndPoints>
+    <policies/>
+    <fileResources/>
+</APIProxy>
