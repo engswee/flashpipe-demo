@@ -15,10 +15,7 @@ jobs:
   sync:
     runs-on: ubuntu-latest
     container:
-      image: engswee/cpi-cicd:latest
-      credentials:
-        username: ${{ secrets.DOCKER_USER }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
+      image: engswee/flashpipe:latest
     steps:
       - uses: actions/checkout@v4
       - name: 'Sync APIProxy to Git'
