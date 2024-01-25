@@ -10,7 +10,7 @@ jobs:
   sync:
     runs-on: ubuntu-latest
     container:
-      image: engswee/flashpipe:latest
+      image: engswee/flashpipe:3.2.0
     steps:
       - uses: actions/checkout@v4
       - name: 'Sync APIProxy to tenant'
