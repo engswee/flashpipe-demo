@@ -12,7 +12,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <jdk.version>8</jdk.version>
         <groovy.all.version>2.4.21</groovy.all.version>
-        <log4j.version>2.17.0</log4j.version>
+        <log4j.version>2.22.1</log4j.version>
         <spock.version>1.3-groovy-2.4</spock.version>
         <camel.core.version>2.24.2</camel.core.version>
     </properties>
@@ -67,8 +67,8 @@
             <version>${log4j.version}</version>
         </dependency>
         <dependency>
-            <groupId>io.github.engswee</groupId>
-            <artifactId>cpi-mock-message</artifactId>
+            <groupId>com.equaliseit</groupId>
+            <artifactId>sap-cpi-mocks</artifactId>
             <version>1.0.0</version>
         </dependency>
     </dependencies>
