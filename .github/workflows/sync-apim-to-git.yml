@@ -4,7 +4,7 @@ on:
     inputs:
       message:
         description: '(Optional) Commit message'
-        default: 'Sync APIProxy from tenant to repo'
+        default: 'Sync APIProxy and APIProduct from tenant to repo'
         required: false
       directory:
         description: 'Target artifacts directory (relative from Git repository root)'
@@ -19,11 +19,20 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: 'Sync APIProxy to Git'
-        uses: engswee/flashpipe-action/sync/apim@v1
+        uses: engswee/flashpipe-action/sync/apiproxy@v1
         with:
           tmn-host: eu20apiportal.cfapps.eu20.hana.ondemand.com
           oauth-host: equaliseit.authentication.eu20.hana.ondemand.com
           oauth-clientid: ${{ secrets.APIPORTAL_OAUTH_CLIENTID }}
           oauth-clientsecret: ${{ secrets.APIPORTAL_OAUTH_CLIENTSECRET }}
-          dir-artifacts-relative: ${{ github.event.inputs.directory }}
+          dir-artifacts-relative: ${{ github.event.inputs.directory }}/APIProxy
+          git-commit-msg: ${{ github.event.inputs.message }}
+      - name: 'Sync APIProduct to Git'
+        uses: engswee/flashpipe-action/sync/apiproduct@v1
+        with:
+          tmn-host: eu20apiportal.cfapps.eu20.hana.ondemand.com
+          oauth-host: equaliseit.authentication.eu20.hana.ondemand.com
+          oauth-clientid: ${{ secrets.APIPORTAL_OAUTH_CLIENTID }}
+          oauth-clientsecret: ${{ secrets.APIPORTAL_OAUTH_CLIENTSECRET }}
+          dir-artifacts-relative: ${{ github.event.inputs.directory }}/APIProduct
           git-commit-msg: ${{ github.event.inputs.message }}
