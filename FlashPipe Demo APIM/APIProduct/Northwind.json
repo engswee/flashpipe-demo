@@ -1,0 +1,50 @@
+{
+  "name": "Northwind",
+  "version": "1",
+  "isPublished": true,
+  "status_code": "PUBLISHED",
+  "title": "Northwind",
+  "additionalProperties": [],
+  "apiProxies": [
+    {
+      "__metadata": {
+        "uri": "APIProxies(name='Northwind_V4')"
+      }
+    }
+  ],
+  "apiResources": [
+    {
+      "id": "01b762f2-0d2a-490a-8651-4c1530139572",
+      "isDeleteChecked": false,
+      "isGetChecked": true,
+      "isPostChecked": true,
+      "isPutChecked": false,
+      "name": "Categories",
+      "apiProxyEndPoint": {
+        "FK_API_NAME": "Northwind_V4"
+      }
+    },
+    {
+      "id": "0a1247a4-0615-446d-b6ad-2516046176ec",
+      "isDeleteChecked": false,
+      "isGetChecked": true,
+      "isPostChecked": true,
+      "isPutChecked": false,
+      "name": "Suppliers",
+      "apiProxyEndPoint": {
+        "FK_API_NAME": "Northwind_V4"
+      }
+    },
+    {
+      "id": "26301022-11d7-451a-95e6-5a2b4a475d66",
+      "isDeleteChecked": false,
+      "isGetChecked": true,
+      "isPostChecked": true,
+      "isPutChecked": false,
+      "name": "Products",
+      "apiProxyEndPoint": {
+        "FK_API_NAME": "Northwind_V4"
+      }
+    }
+  ]
+}
