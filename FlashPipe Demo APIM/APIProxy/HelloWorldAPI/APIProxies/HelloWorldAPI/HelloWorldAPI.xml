@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<APIProxy xmlns="http://www.sap.com/apimgmt">
+    <name>HelloWorldAPI</name>
+    <title>HelloWorldAPI</title>
+    <description>Sanity test proxy</description>
+    <isVersioned>false</isVersioned>
+    <service_code>REST</service_code>
+    
+    <APIState>Active</APIState>
+    <life_cycle/>
+    <proxyEndPoints>
+        <proxyEndPoint>
+            <proxyEndPointName>default</proxyEndPointName>
+        </proxyEndPoint>
+    </proxyEndPoints>
+    <targetEndPoints>
+        <targetEndPoint>default</targetEndPoint>
+    </targetEndPoints>
+    <policies/>
+    <fileResources/>
+</APIProxy>

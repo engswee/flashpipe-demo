@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<TargetEndPoint xmlns="http://www.sap.com/apimgmt">
+    <name>default</name>
+    <url>https://www.sap.com</url>
+    <provider_id>NONE</provider_id>
+    <additionalAPIProviders/>
+    <isDefault>true</isDefault>
+    <properties/>
+    <faultRules/>
+    <conditionalFlows/>
+    <loadBalancerConfigurations>
+        <isRetry>false</isRetry>
+        <healthMonitor>
+            <isEnabled>false</isEnabled>
+        </healthMonitor>
+    </loadBalancerConfigurations>
+</TargetEndPoint>
