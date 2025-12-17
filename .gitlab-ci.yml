@@ -1,0 +1,45 @@
+stages:
+  - snapshot
+
+variables:
+  ARTIFACT_DIRECTORY: "backup"
+  EXCLUDED_IDS: "packageName1,packageName2"
+  INCLUDED_IDS: ""
+  DRAFT_HANDLING: "ADD" #SKIP, ERROR
+  COMMIT_MESSAGE: "Automated tenant backup by FlashPipe-powered Gitlab CI/CD pipeline"
+  TMN_HOST: $DEV_TMN_HOST
+  OAUTH_HOST: $DEV_OAUTH_HOST
+  OAUTH_CLIENTID: $DEV_CLIENT_ID
+  OAUTH_CLIENTSECRET: $DEV_CLIENT_SECRET
+
+take_snapshot:
+  stage: snapshot
+  image: engswee/flashpipe:latest
+  script:
+    - echo "Checking out main branch"
+    - git fetch origin main  # Fetch the main branch from the remote
+    - git checkout main      # Checkout the main branch locally in order to be able to push it back afterwards
+    - echo "Download the current state of the tenant and add it to the repo."
+    - 'echo "Taking a snapshot with the following parameters:"'
+    - 'echo "Directory: $ARTIFACT_DIRECTORY"'
+    - 'echo "Excluded IDs: $EXCLUDED_IDS"'
+    - 'echo "Included IDs: $INCLUDED_IDS"'
+    - 'echo "Draft Handling: $DRAFT_HANDLING"'
+    - 'echo "Commit Message: $COMMIT_MESSAGE"'
+    - >
+      flashpipe snapshot
+      --tmn-host $TMN_HOST
+      --oauth-host $OAUTH_HOST
+      --oauth-clientid $OAUTH_CLIENTID
+      --oauth-clientsecret $OAUTH_CLIENTSECRET
+      --dir-artifacts $ARTIFACT_DIRECTORY      
+      --draft-handling "$DRAFT_HANDLING"
+      --git-commit-msg "$COMMIT_MESSAGE"
+      --ids-exclude "$EXCLUDED_IDS"
+    #--ids-include "$INCLUDED_IDS" # EITHER use included or excluded IDs parameter (remove the respective unneeded line from the file or keep it outside of the multi-line string started by ">"!)
+    - echo "Push temporary pipeline-local repo to the Git repo"
+    - git push https://gitlab-ci-token:$CI_JOB_TOKEN@$CI_SERVER_HOST/$CI_PROJECT_PATH.git main
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "schedule"'
+      when: always # set to always run if triggered by schedule
+    - when: manual # still allow manual triggering, but never trigger by pushed commits.
