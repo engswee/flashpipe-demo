@@ -1,0 +1,43 @@
+stages:
+  - update
+  - deploy
+
+variables:
+  TMN_HOST: $DEV_TMN_HOST
+  OAUTH_HOST: $DEV_OAUTH_HOST
+  OAUTH_CLIENTID: $DEV_CLIENT_ID
+  OAUTH_CLIENTSECRET: $DEV_CLIENT_SECRET
+
+update_artifact:
+  stage: update
+  image: engswee/flashpipe:latest
+  script:
+    - echo "Uploading/Updating artifact..."
+    - >
+      flashpipe update artifact 
+      --tmn-host $TMN_HOST 
+      --oauth-host $OAUTH_HOST 
+      --oauth-clientid $OAUTH_CLIENTID 
+      --oauth-clientsecret $OAUTH_CLIENTSECRET 
+      --artifact-id GroovyXMLTransformation       
+      --package-id FlashPipeDemo
+      --dir-artifact "FlashPipe Demo/Groovy XML Transformation"
+    - echo "Artifact uploaded/updated successfully."
+  only:
+    - main
+
+deploy_artifact:
+  stage: deploy
+  image: engswee/flashpipe:latest
+  script:
+    - echo "Deploying artifact to tenant"
+    - >
+      flashpipe deploy
+      --tmn-host $TMN_HOST 
+      --oauth-host $OAUTH_HOST 
+      --oauth-clientid $OAUTH_CLIENTID 
+      --oauth-clientsecret $OAUTH_CLIENTSECRET 
+      --artifact-ids GroovyXMLTransformation
+    - echo "Artifact deployed successfully."
+  only:
+    - main
