@@ -49,8 +49,8 @@ jobs:
     - name: 'Sync any artifact'
       uses: engswee/flashpipe-action/sync@v1
       with:
-        tmn-host: equaliseit.it-cpi023.cfapps.eu20-001.hana.ondemand.com
-        oauth-host: equaliseit.authentication.eu20.hana.ondemand.com
+        tmn-host: ${{ vars.TMN_HOST }}
+        oauth-host: ${{ vars.OAUTH_HOST }}
         oauth-clientid: ${{ secrets.DEV_CLIENT_ID }}
         oauth-clientsecret: ${{ secrets.DEV_CLIENT_SECRET }}
         package-id: ${{ github.event.inputs.packageId }}
