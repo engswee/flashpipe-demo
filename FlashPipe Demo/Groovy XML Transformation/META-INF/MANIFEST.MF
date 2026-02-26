@@ -30,7 +30,7 @@ Import-Package: com.sap.esb.application.services.cxf.interceptor,com.sap
  "
 SAP-RuntimeProfile: iflmap
 Bundle-Name: Groovy XML Transformation
-Bundle-Version: 1.0.0
+Bundle-Version: 1.0.1
 SAP-NodeType: IFLMAP
 SAP-BundleType: IntegrationFlow
 Import-Service: com.sap.esb.webservice.audit.log.AuditLogger,com.sap.esb

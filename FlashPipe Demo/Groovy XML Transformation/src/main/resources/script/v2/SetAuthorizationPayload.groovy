@@ -1,4 +1,6 @@
-import com.sap.gateway.ip.core.customdev.util.Message
+// This is Groovy Flowstep Version 2.x, running with Groovy runtime 4, Downgrade the script if older behaviour needed.
+
+import com.sap.it.script.v2.api.Message
 import com.sap.it.api.ITApiFactory
 import com.sap.it.api.securestore.SecureStoreService
 import com.sap.it.api.securestore.UserCredential
