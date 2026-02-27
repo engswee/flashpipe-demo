@@ -31,8 +31,8 @@ jobs:
       - name: 'Update/Upload Groovy XML Transformation to design time'
         uses: engswee/flashpipe-action/update/artifact@v1
         with:
-          tmn-host: equaliseit.it-cpi023.cfapps.eu20-001.hana.ondemand.com
-          oauth-host: equaliseit.authentication.eu20.hana.ondemand.com
+          tmn-host: ${{ vars.TMN_HOST }}
+          oauth-host: ${{ vars.OAUTH_HOST }}
           oauth-clientid: ${{ secrets.DEV_CLIENT_ID }}
           oauth-clientsecret: ${{ secrets.DEV_CLIENT_SECRET }}
           artifact-id: GroovyXMLTransformation
@@ -43,8 +43,8 @@ jobs:
       - name: 'Update/Upload Sample_Message_Mapping to design time'
         uses: engswee/flashpipe-action/update/artifact@v1
         with:
-          tmn-host: equaliseit.it-cpi023.cfapps.eu20-001.hana.ondemand.com
-          oauth-host: equaliseit.authentication.eu20.hana.ondemand.com
+          tmn-host: ${{ vars.TMN_HOST }}
+          oauth-host: ${{ vars.OAUTH_HOST }}
           oauth-clientid: ${{ secrets.DEV_CLIENT_ID }}
           oauth-clientsecret: ${{ secrets.DEV_CLIENT_SECRET }}
           artifact-id: Sample_Message_Mapping
@@ -57,8 +57,8 @@ jobs:
       - name: 'Update/Upload Sample_Script_Collection to design time'
         uses: engswee/flashpipe-action/update/artifact@v1
         with:
-          tmn-host: equaliseit.it-cpi023.cfapps.eu20-001.hana.ondemand.com
-          oauth-host: equaliseit.authentication.eu20.hana.ondemand.com
+          tmn-host: ${{ vars.TMN_HOST }}
+          oauth-host: ${{ vars.OAUTH_HOST }}
           oauth-clientid: ${{ secrets.DEV_CLIENT_ID }}
           oauth-clientsecret: ${{ secrets.DEV_CLIENT_SECRET }}
           artifact-id: Sample_Script_Collection
@@ -71,8 +71,8 @@ jobs:
       - name: 'Update/Upload Sample_Value_Mapping to design time'
         uses: engswee/flashpipe-action/update/artifact@v1
         with:
-          tmn-host: equaliseit.it-cpi023.cfapps.eu20-001.hana.ondemand.com
-          oauth-host: equaliseit.authentication.eu20.hana.ondemand.com
+          tmn-host: ${{ vars.TMN_HOST }}
+          oauth-host: ${{ vars.OAUTH_HOST }}
           oauth-clientid: ${{ secrets.DEV_CLIENT_ID }}
           oauth-clientsecret: ${{ secrets.DEV_CLIENT_SECRET }}
           artifact-id: Sample_Value_Mapping
@@ -94,8 +94,8 @@ jobs:
       - name: 'Deploy Groovy XML Transformation to runtime'
         uses: engswee/flashpipe-action/deploy@v1
         with:
-          tmn-host: equaliseit.it-cpi023.cfapps.eu20-001.hana.ondemand.com
-          oauth-host: equaliseit.authentication.eu20.hana.ondemand.com
+          tmn-host: ${{ vars.TMN_HOST }}
+          oauth-host: ${{ vars.OAUTH_HOST }}
           oauth-clientid: ${{ secrets.DEV_CLIENT_ID }}
           oauth-clientsecret: ${{ secrets.DEV_CLIENT_SECRET }}
           artifact-ids: GroovyXMLTransformation
@@ -103,8 +103,8 @@ jobs:
       - name: 'Deploy Sample_Message_Mapping to runtime'
         uses: engswee/flashpipe-action/deploy@v1
         with:
-          tmn-host: equaliseit.it-cpi023.cfapps.eu20-001.hana.ondemand.com
-          oauth-host: equaliseit.authentication.eu20.hana.ondemand.com
+          tmn-host: ${{ vars.TMN_HOST }}
+          oauth-host: ${{ vars.OAUTH_HOST }}
           oauth-clientid: ${{ secrets.DEV_CLIENT_ID }}
           oauth-clientsecret: ${{ secrets.DEV_CLIENT_SECRET }}
           artifact-ids: Sample_Message_Mapping
@@ -113,8 +113,8 @@ jobs:
       - name: 'Deploy Sample_Script_Collection to runtime'
         uses: engswee/flashpipe-action/deploy@v1
         with:
-          tmn-host: equaliseit.it-cpi023.cfapps.eu20-001.hana.ondemand.com
-          oauth-host: equaliseit.authentication.eu20.hana.ondemand.com
+          tmn-host: ${{ vars.TMN_HOST }}
+          oauth-host: ${{ vars.OAUTH_HOST }}
           oauth-clientid: ${{ secrets.DEV_CLIENT_ID }}
           oauth-clientsecret: ${{ secrets.DEV_CLIENT_SECRET }}
           artifact-ids: Sample_Script_Collection
@@ -123,8 +123,8 @@ jobs:
       - name: 'Deploy Sample_Value_Mapping to runtime'
         uses: engswee/flashpipe-action/deploy@v1
         with:
-          tmn-host: equaliseit.it-cpi023.cfapps.eu20-001.hana.ondemand.com
-          oauth-host: equaliseit.authentication.eu20.hana.ondemand.com
+          tmn-host: ${{ vars.TMN_HOST }}
+          oauth-host: ${{ vars.OAUTH_HOST }}
           oauth-clientid: ${{ secrets.DEV_CLIENT_ID }}
           oauth-clientsecret: ${{ secrets.DEV_CLIENT_SECRET }}
           artifact-ids: Sample_Value_Mapping
