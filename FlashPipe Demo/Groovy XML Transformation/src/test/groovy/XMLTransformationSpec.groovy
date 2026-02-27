@@ -1,5 +1,6 @@
-import com.sap.gateway.ip.core.customdev.util.Message
+import com.sap.it.script.v2.api.Message
 import com.sap.it.api.mapping.ValueMappingApi
+import groovy.xml.XmlSlurper
 import spock.lang.Shared
 import spock.lang.Specification
 
@@ -10,7 +11,7 @@ class XMLTransformationSpec extends Specification {
 
     def setupSpec() {
         GroovyShell shell = new GroovyShell()
-        script = shell.parse(this.getClass().getResource('/script/XMLTransformation.groovy').toURI())
+        script = shell.parse(this.getClass().getResource('/script/v2/XMLTransformation.groovy').toURI())
     }
 
     def setup() {

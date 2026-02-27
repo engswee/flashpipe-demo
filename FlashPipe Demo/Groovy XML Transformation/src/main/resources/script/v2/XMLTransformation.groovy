@@ -4,6 +4,7 @@ import com.sap.it.script.v2.api.Message
 import com.sap.it.api.ITApiFactory
 import com.sap.it.api.mapping.ValueMappingApi
 import groovy.xml.MarkupBuilder
+import groovy.xml.XmlSlurper
 
 import java.text.SimpleDateFormat
 
