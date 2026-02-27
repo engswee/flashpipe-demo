@@ -1,4 +1,4 @@
-import com.sap.gateway.ip.core.customdev.util.Message
+import com.sap.it.script.v2.api.Message
 import com.sap.it.api.securestore.SecureStoreService
 import com.sap.it.api.securestore.UserCredential
 import com.sap.it.api.securestore.exception.SecureStoreException
@@ -14,7 +14,7 @@ class SetAuthorizationPayloadSpec extends Specification {
 
     def setupSpec() {
         GroovyShell shell = new GroovyShell()
-        script = shell.parse(this.getClass().getResource('/script/SetAuthorizationPayload.groovy').toURI())
+        script = shell.parse(this.getClass().getResource('/script/v2/SetAuthorizationPayload.groovy').toURI())
     }
 
     def setup() {
